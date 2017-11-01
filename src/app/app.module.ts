@@ -10,8 +10,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+
+import { HelperProvider } from '../providers/helper/helper';
+import { ApiProvider } from '../providers/api/api';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Network } from '@ionic-native/network';
+import { Toast } from '@ionic-native/toast';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { EmailComposer } from '@ionic-native/email-composer';
 
   export function createTranslateLoader(http: HttpClient) {
       return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -55,9 +64,10 @@ const pages :any[]=[
      ...pages
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: ErrorHandler, useClass: MyErrorHandler }
+    StatusBar, SplashScreen,
+    { provide: ErrorHandler, useClass: MyErrorHandler },
+    HelperProvider, ApiProvider, Network, Toast, SocialSharing, SpinnerDialog,
+    EmailComposer
 
   ]
 })

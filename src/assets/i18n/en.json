@@ -1,3 +1,8 @@
 {
-	"HELLO":"hello worled"
+	"HELLO":"hello worled",
+   	"CANCEL":"cancel",
+	"ERRORS":{
+		"OFFLINE":"No Internet Connection!",
+		"REQUEST":"Something goes wrong!, try again later."
+	}
 }
