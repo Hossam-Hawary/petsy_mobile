@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -8,7 +8,6 @@ import { Pro } from '@ionic/pro';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 
 import { HelperProvider } from '../providers/helper/helper';
@@ -29,16 +28,15 @@ import { EmailComposer } from '@ionic-native/email-composer';
     appVersion: "0.0.1"
   });
 
-  export class MyErrorHandler implements ErrorHandler {
-  handleError(err: any): void {
-    IonicPro.monitoring.handleNewError(err);
-  }
-}
+// export class MyErrorHandler implements ErrorHandler {
+//   handleError(err: any): void {
+//     IonicPro.monitoring.handleNewError(err);
+//   }
+// }
 
 
 const pages :any[]=[
     HomePage,
-    ListPage
 ]
 @NgModule({
   declarations: [
@@ -65,7 +63,7 @@ const pages :any[]=[
   ],
   providers: [
     StatusBar, SplashScreen,
-    { provide: ErrorHandler, useClass: MyErrorHandler },
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     HelperProvider, ApiProvider, Network, Toast, SocialSharing, SpinnerDialog,
     EmailComposer
 
