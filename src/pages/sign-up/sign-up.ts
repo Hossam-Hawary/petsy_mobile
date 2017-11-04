@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms'
 import { UserValidator } from  '../../validators/user-validator';
+import { HomePage } from '../home/home'
 
 /**
  * Generated class for the SignUpPage page.
@@ -33,5 +34,13 @@ export class SignUpPage {
 
  save(){
  	console.log(this.signupForm.value)
+      this.navCtrl.setRoot(HomePage)
+ }
+
+ login(){
+   this.navCtrl.setRoot('LoginPage')
+ }
+  skipLogin(){
+   this.navCtrl.setRoot(HomePage)
  }
 }

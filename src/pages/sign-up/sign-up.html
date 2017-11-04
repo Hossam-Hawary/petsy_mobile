@@ -10,6 +10,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+        <ion-buttons end color="primary">
+	    <button ion-button (click)="skipLogin()" >
+	    	Skip
+	    </button>
+    </ion-buttons>
     <ion-title>sign-up</ion-title>
   </ion-navbar>
 
@@ -54,5 +59,6 @@
 	 	  <button ion-button full color="primary" [disabled]="!signupForm.valid"(click)="save()">Create Account!
 	 	  </button>
 	</ion-list>
+		<h3 class="link" (click)="login()" >Already have account.</h3>
 
 </ion-content>

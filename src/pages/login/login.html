@@ -5,6 +5,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-buttons end color="primary">
+	    <button ion-button (click)="skipLogin()" >
+	    	Skip
+	    </button>
+    </ion-buttons>
     <ion-title>login</ion-title>
   </ion-navbar>
 
@@ -14,7 +19,7 @@
 <ion-content padding>
  
 	<ion-list no-lines>
-	 
+
 	    <form [formGroup]="loginForm" novalidate>
 	        <ion-item>
 	            <ion-label floating> Email </ion-label>
@@ -38,5 +43,6 @@
 		  <button ion-button full color="primary" [disabled]="!loginForm.valid"(click)="login()">Log In
 	 	 </button> 
 	</ion-list>
+	<h3 class="link" (click)="signUp()" >Create account.</h3>
 
 </ion-content>
