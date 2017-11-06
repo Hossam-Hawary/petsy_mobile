@@ -20,6 +20,7 @@ import { Toast } from '@ionic-native/toast';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { UserProvider } from '../providers/user/user';
 
   export function createTranslateLoader(http: HttpClient) {
       return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,7 +66,8 @@ const pages :any[]=[
     StatusBar, SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HelperProvider, ApiProvider, Network, Toast, SocialSharing, SpinnerDialog,
-    EmailComposer
+    EmailComposer,
+    UserProvider
 
   ]
 })

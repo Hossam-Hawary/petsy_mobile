@@ -82,8 +82,10 @@ export class HelperProvider {
     }
 
     handleRequestError(err){
-      this.createToast(this.translate('ERRORS.REQUEST'),'');
-      Pro.getApp().monitoring.exception(err);
+      let msg = err.error? JSON.parse(err.error):{}
+      msg = msg.error_messages ? msg.error_messages.join(', '):this.translate('ERRORS.REQUEST');
+      this.createToast(msg)
+      // Pro.getApp().monitoring.exception(err);
     }
 
     runZone(callBack?){
