@@ -29,7 +29,6 @@ export class SignUpPage {
  ngOnInit(){
 
     this.signupForm = this.formBuilder.group({
-        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         email: ['', Validators.compose([Validators.maxLength(30), Validators.required, UserValidator.emailValidator])],
         password: ['', Validators.compose([Validators.minLength(6),Validators.maxLength(30), Validators.required, UserValidator.passwordValidator])]
     });
@@ -41,7 +40,7 @@ export class SignUpPage {
     const result:any = await this.userProvider.register(this.signupForm.value);
     console.log("register", result)
      if(result.success){ 
-       this.navCtrl.setRoot(HomePage)
+       this.navCtrl.setRoot('CompleteProfilePage')
      }else{
        this.errorMessage = result.errorMessage;
      }

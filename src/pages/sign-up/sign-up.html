@@ -15,7 +15,7 @@
 	    	Skip
 	    </button>
     </ion-buttons>
-    <ion-title>sign-up</ion-title>
+    <ion-title>Sign Up</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -27,15 +27,6 @@
 	<ion-list no-lines>
 	 
 	    <form [formGroup]="signupForm" novalidate>
-	 
-	        <ion-item >
-	            <ion-label floating> Full Name </ion-label>
-	            <ion-input formControlName="name" type="text"
-	            [class.invalid]="!signupForm.controls.name.valid && (signupForm.controls.name.dirty)"></ion-input>
-	        </ion-item>
-	        <ion-item *ngIf="!signupForm.controls.name.valid  && (signupForm.controls.name.dirty )">
-                <p>Please enter a valid name.</p>
-            </ion-item>
 	 
 	        <ion-item>
 	            <ion-label floating> Email </ion-label>
@@ -59,6 +50,6 @@
 	 	  <button ion-button full color="primary" [disabled]="!signupForm.valid"(click)="register()">Create Account!
 	 	  </button>
 	</ion-list>
-		<h3 class="link" (click)="login()" >Already have account.</h3>
+		<h3 class="link" (click)="login()" >Already have an account.</h3>
 
 </ion-content>

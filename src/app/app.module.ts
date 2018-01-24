@@ -7,6 +7,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Pro } from '@ionic/pro';
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireAuthModule } from 'angularfire2/auth'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { FIREBASE_CONFIG } from './app.config'
 
 import { MyApp } from './app.component';
@@ -54,6 +55,7 @@ const pages :any[]=[
     HttpClientModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

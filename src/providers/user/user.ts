@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiProvider } from '../api/api'
 import { AngularFireAuth } from 'angularfire2/auth'
+import { AngularFireDatabase } from 'angularfire2/database'
 import { HelperProvider } from '../../providers/helper/helper'
 
 /*
@@ -26,7 +27,7 @@ const  ObjecttoParams = function(obj, key?: any) {
 export class UserProvider {
 
   constructor( private apiProvider:ApiProvider, private afAuth:AngularFireAuth,
-    private helper:HelperProvider) {
+    private afDatabase:AngularFireDatabase, private helper:HelperProvider) {
   }
 
   loginUser(userData){
@@ -55,6 +56,11 @@ export class UserProvider {
     catch(err){
       return { success:false, errorMessage: this.getFirebaseErrorMessage(err)}
     }
+  }
+   async createProfile(profileData){
+       this.afAuth.authState.take(1).subscribe( async (auth)=>{
+       await this.afDatabase.object(`profile/${auth.uid}`).set(profileData)
+    })
   }
 
   getFirebaseErrorMessage(afErr){

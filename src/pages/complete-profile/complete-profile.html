@@ -1,0 +1,43 @@
+<!--
+  Generated template for the CompleteProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Crearte Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list no-lines>
+	 	<p>let's setup your profile in a few minutes </p>
+	    <form [formGroup]="profileForm" novalidate>
+	 
+	        <ion-item>
+	            <ion-label floating> Full Name </ion-label>
+	            <ion-input formControlName="name" type="text"
+	             [class.invalid]="!profileForm.controls.name.valid && (profileForm.controls.name.dirty)"></ion-input>
+	        </ion-item>
+	       	<ion-item *ngIf="!profileForm.controls.name.valid && (profileForm.controls.name.dirty )">
+                <p>Please enter a valid Name.</p>
+            </ion-item>
+	 
+	        <ion-item>
+	            <ion-label floating> Username </ion-label>
+	            <ion-input formControlName="username"
+	             [class.invalid]="!profileForm.controls.username.valid && (profileForm.controls.username.dirty)"></ion-input>
+	        </ion-item>
+	        <ion-item *ngIf="!profileForm.controls.username.valid && (profileForm.controls.username.dirty )">
+                <p>Please enter a valid username.</p>
+            </ion-item>
+	    </form>
+	    	<p class="error">{{errorMessage}}</p>
+	 	  <button ion-button full color="primary" [disabled]="!profileForm.valid"(click)="createProfile()">Create Account!
+	 	  </button>
+	</ion-list>
+</ion-content>
