@@ -38,8 +38,8 @@
 	        <ion-item *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty )">
                 <p>Please enter a valid password.</p>
             </ion-item>
-	       
 	    </form>
+	    <p class="error">{{errorMessage}}</p>
 		  <button ion-button full color="primary" [disabled]="!loginForm.valid"(click)="login()">Log In
 	 	 </button> 
 	</ion-list>

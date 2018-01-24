@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams, } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms'
 import { UserValidator } from  '../../validators/user-validator';
 import { HomePage } from '../home/home'
-
+import { UserProvider } from '../../providers/user/user'
+import { HelperProvider } from '../../providers/helper/helper'
 /**
  * Generated class for the SignUpPage page.
  *
@@ -18,9 +19,11 @@ import { HomePage } from '../home/home'
 })
 export class SignUpPage {
 	signupForm:FormGroup
+  errorMessage:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	 public formBuilder: FormBuilder) {
+  	 public formBuilder: FormBuilder, private userProvider:UserProvider,
+     private helper:HelperProvider) {
   }
 
  ngOnInit(){
@@ -32,10 +35,17 @@ export class SignUpPage {
     });
  }
 
- save(){
+ async register(){
  	console.log(this.signupForm.value)
-      this.navCtrl.setRoot(HomePage)
- }
+    this.errorMessage = "";
+    const result:any = await this.userProvider.register(this.signupForm.value);
+    console.log("register", result)
+     if(result.success){ 
+       this.navCtrl.setRoot(HomePage)
+     }else{
+       this.errorMessage = result.errorMessage;
+     }
+   }
 
  login(){
    this.navCtrl.setRoot('LoginPage')

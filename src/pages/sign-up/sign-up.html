@@ -54,9 +54,9 @@
 	        <ion-item *ngIf="!signupForm.controls.password.valid && (signupForm.controls.password.dirty )">
                 <p>Please enter a valid password.</p>
             </ion-item>
-	      
 	    </form>
-	 	  <button ion-button full color="primary" [disabled]="!signupForm.valid"(click)="save()">Create Account!
+	    	<p class="error">{{errorMessage}}</p>
+	 	  <button ion-button full color="primary" [disabled]="!signupForm.valid"(click)="register()">Create Account!
 	 	  </button>
 	</ion-list>
 		<h3 class="link" (click)="login()" >Already have account.</h3>

@@ -19,6 +19,8 @@ import { HelperProvider } from '../../providers/helper/helper'
 })
 export class LoginPage {
 	loginForm:FormGroup;
+  errorMessage:string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	public formBuilder: FormBuilder, private userProvider:UserProvider,
@@ -34,14 +36,18 @@ export class LoginPage {
     });
  }
 
- login(){
+ async login(){
  	console.log(this.loginForm.value)
-    this.userProvider.loginUser(this.loginForm.value).subscribe((data)=>{
-         this.navCtrl.setRoot(HomePage)
-    },(err)=>{
-       this.helper.handleRequestError(err)
-    })
+     this.errorMessage = "";
+     const result:any = await this.userProvider.login(this.loginForm.value)
+     console.log("login", result)
+     if(result.success){ 
+       this.navCtrl.setRoot(HomePage)
+     }else{
+       this.errorMessage = result.errorMessage;
+     }
  }
+
  signUp(){
    this.navCtrl.setRoot('SignUpPage')
  }

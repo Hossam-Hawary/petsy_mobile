@@ -3,6 +3,12 @@
    	"CANCEL":"cancel",
 	"ERRORS":{
 		"OFFLINE":"No Internet Connection!",
-		"REQUEST":"Something goes wrong!, try again later."
+		"REQUEST":"Something goes wrong!, try again later.",
+		"FIREBASE":{
+			"EMAIL_NOT_FOUND":"Invalid Email Address!",
+			"INVALID_PASSWORD":"Incorrect Psssword!",
+			"EMAIL_EXISTS":"The email address is already in use by another account.",
+			"INVALID_EMAIL_OR_PASSWORD":"Something is incorrect!"
+		}
 	}
 }
