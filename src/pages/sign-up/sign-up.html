@@ -33,18 +33,14 @@
 	            <ion-input formControlName="email" type="text"
 	             [class.invalid]="!signupForm.controls.email.valid && (signupForm.controls.email.dirty)"></ion-input>
 	        </ion-item>
-	       	<ion-item *ngIf="!signupForm.controls.email.valid && (signupForm.controls.email.dirty )">
-                <p class="error">Please enter a valid email.</p>
-            </ion-item>
+            <p *ngIf="!signupForm.controls.email.valid && (signupForm.controls.email.dirty )" class="error">Please enter a valid email.</p>
 	 
 	        <ion-item>
 	            <ion-label floating> Password </ion-label>
 	            <ion-input formControlName="password" type="password"
 	             [class.invalid]="!signupForm.controls.password.valid && (signupForm.controls.password.dirty)"></ion-input>
 	        </ion-item>
-	        <ion-item *ngIf="!signupForm.controls.password.valid && (signupForm.controls.password.dirty )">
-                <p class="error">Please enter a valid password.</p>
-            </ion-item>
+            <p *ngIf="!signupForm.controls.password.valid && (signupForm.controls.password.dirty )" class="error">Passwords must be 6-30 letter, and can include special characters.</p>
 	    </form>
 	    	<p class="error">{{errorMessage}}</p>
 	 	  <button ion-button full color="primary" [disabled]="!signupForm.valid"(click)="register()">Create Account!

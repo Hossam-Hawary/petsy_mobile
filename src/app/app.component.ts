@@ -23,12 +23,12 @@ export class MyApp {
     , public splashScreen: SplashScreen, private translate: TranslateService,
     private network:Network, private helper:HelperProvider, private userProvider:UserProvider) {
     this.initializeApp();
-    if(this.userProvider.currentUser()) this.rootPage = HomePage;
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Login', component: 'LoginPage' },
-      { title: 'Sign Up', component: 'SignUpPage' }
+      { title: 'Sign Up', component: 'SignUpPage' },
+      { title: 'Profile', component: 'ProfilePage' }
     ];
 
   }
@@ -45,12 +45,17 @@ export class MyApp {
       this.network.onConnect().subscribe((data) => {
           this.helper.changeConnection(true);
         });
+      this.userProvider.afAuth.authState.take(1).subscribe(  (auth)=>{
+        console.log("auth..uid....",auth )
+        if(auth) this.userProvider.setAuth(auth);
+        this.rootPage = HomePage;
+        this.splashScreen.hide();
+      })
               // this language will be used as a fallback when a translation isn't found in the current language
       this.translate.setDefaultLang('en');
          // the lang to use, if the lang isn't available, it will use the current loader to get them
       this.translate.use('en');
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
     });
   }
 
@@ -59,4 +64,10 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  signOut(){
+    this.rootPage = 'LoginPage'
+    this.userProvider.signOut()
+  }
+  
 }

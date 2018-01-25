@@ -26,21 +26,17 @@ const  ObjecttoParams = function(obj, key?: any) {
 
 @Injectable()
 export class UserProvider {
-  uid:string;
-  constructor( private apiProvider:ApiProvider, private afAuth:AngularFireAuth,
+  auth:any;
+  constructor( private apiProvider:ApiProvider, public afAuth:AngularFireAuth,
     private afDatabase:AngularFireDatabase, private helper:HelperProvider) {
-     this.afAuth.authState.take(1).subscribe(  (auth)=>{
-       console.log("auth..uid....",auth )
-       if(auth) this.uid = auth.uid;
-    })
   }
-  
-  setUid(uid){
-    this.uid = uid;
+
+  setAuth(auth){
+    this.auth = auth;
   }
 
   currentUser(){
-    return this.uid;
+    return this.auth;
   }
 
   loginUser(userData){
@@ -71,9 +67,10 @@ export class UserProvider {
     }
   }
    async createProfile(profileData){
-    if(!this.uid) return false;
+    if(!this.auth) return false;
+    profileData.email = this.auth.email;
     try{
-        return { success:true, data: await this.afDatabase.object(`profile/${this.uid}`).set(profileData)}
+        return { success:true, data: await this.afDatabase.object(`profile/${this.auth.uid}`).set(profileData)}
      }
      catch(err){
         return {success:false, error:err};
@@ -81,15 +78,20 @@ export class UserProvider {
   }
 
   async uploadPhotoToStorage(photo){
-    if(!this.uid) return false;
+    if(!this.auth) return false;
       try{
-        const pictures = storage().ref(`imgs/profiles/${this.uid}`)
+        const pictures = storage().ref(`imgs/profiles/${this.auth.uid}`)
         return{ success:true,data: await pictures.putString(photo,'data_url')}
       }
       catch(err){
         return {success:false, error:err};
       }
-    }
+  }
+
+  signOut(){
+    this.afAuth.auth.signOut()
+    this.auth = null;
+  }
 
   getFirebaseErrorMessage(afErr){
 

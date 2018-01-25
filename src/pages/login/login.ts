@@ -43,7 +43,7 @@ export class LoginPage {
     const result:any = await this.userProvider.login(this.loginForm.value)
     console.log("login", result)
     if(result.success){ 
-      this.userProvider.setUid(result.data.uid)
+      this.userProvider.setAuth(result.data)
       this.navCtrl.setRoot(HomePage)
     }else{
       this.errorMessage = result.errorMessage;

@@ -26,18 +26,14 @@
 	            <ion-input formControlName="email" type="text"
 	             [class.invalid]="!loginForm.controls.email.valid && (loginForm.controls.email.dirty)"></ion-input>
 	        </ion-item>
-	       	<ion-item *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty )">
-                <p class="error">Please enter a valid email.</p>
-            </ion-item>
-	 
+	         <p *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty )" class="error">Please enter a valid email.</p>
+
 	        <ion-item>
 	            <ion-label floating> Password </ion-label>
 	            <ion-input formControlName="password" type="password"
 	             [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty)"></ion-input>
 	        </ion-item>
-	        <ion-item *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty )">
-                <p class="error">Please enter a valid password.</p>
-            </ion-item>
+            <p *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty )" class="error">Please enter a valid password.</p>
 	    </form>
 	    <p class="error">{{errorMessage}}</p>
 		  <button ion-button full color="primary" [disabled]="!loginForm.valid"(click)="login()">Log In

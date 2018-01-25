@@ -30,7 +30,7 @@ export class CompleteProfilePage {
  ngOnInit(){
 
     this.profileForm = this.formBuilder.group({
-        name: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        name: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z]{3}[ ]*[a-zA-Z ]*'), Validators.required])],
         username: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30),Validators.pattern('[a-zA-Z]*'), Validators.required])],
     });
  }

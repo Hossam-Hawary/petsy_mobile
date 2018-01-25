@@ -41,7 +41,7 @@ export class SignUpPage {
     const result:any = await this.userProvider.register(this.signupForm.value);
     console.log("register", result)
      if(result.success){ 
-       this.userProvider.setUid(result.data.uid)
+       this.userProvider.setAuth(result.data)
        this.navCtrl.setRoot('CompleteProfilePage')
 
      }else{
