@@ -5,6 +5,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Pro } from '@ionic/pro';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
 
@@ -15,9 +16,9 @@ export class HelperProvider {
 
 	loader:any;
 	connectionState:boolean;
-  constructor(private loadingCntrl:LoadingController, 
+  constructor(private loadingCntrl:LoadingController,
   	private modalCtrl:ModalController, private toast:Toast, private socialSharing: SocialSharing,
-  	private platform: Platform, private spinnerDialog: SpinnerDialog,
+  	private platform: Platform, private spinnerDialog: SpinnerDialog,private camera:Camera,
      private translateService: TranslateService, private zone:NgZone) {
   }
 
@@ -106,5 +107,26 @@ export class HelperProvider {
        }
        this.socialSharing.shareWithOptions(options)
      });
+   }
+
+   async takePhoto(){
+     try{
+
+     const options: CameraOptions = {
+        quality: 100, //0-100
+        targetWidth:600, //px
+        targetHeight:600, //px
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.PNG,
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation:true,
+        saveToPhotoAlbum:false
+      }
+       const imageData =  await this.camera.getPicture(options)
+      return  'data:image/png;base64,' + imageData;
+     }
+     catch(err){
+        return  null;
+     }
    }
 }

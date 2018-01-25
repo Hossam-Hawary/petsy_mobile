@@ -27,7 +27,7 @@
 	             [class.invalid]="!loginForm.controls.email.valid && (loginForm.controls.email.dirty)"></ion-input>
 	        </ion-item>
 	       	<ion-item *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty )">
-                <p>Please enter a valid email.</p>
+                <p class="error">Please enter a valid email.</p>
             </ion-item>
 	 
 	        <ion-item>
@@ -36,7 +36,7 @@
 	             [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty)"></ion-input>
 	        </ion-item>
 	        <ion-item *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty )">
-                <p>Please enter a valid password.</p>
+                <p class="error">Please enter a valid password.</p>
             </ion-item>
 	    </form>
 	    <p class="error">{{errorMessage}}</p>

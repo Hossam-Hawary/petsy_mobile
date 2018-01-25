@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService} from '@ngx-translate/core';
 import { Network } from '@ionic-native/network';
 import { HelperProvider } from '../providers/helper/helper';
+import { UserProvider } from '../providers/user/user'
 
 import { HomePage } from '../pages/home/home';
 
@@ -20,9 +21,9 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar
     , public splashScreen: SplashScreen, private translate: TranslateService,
-    private network:Network, private helper:HelperProvider) {
+    private network:Network, private helper:HelperProvider, private userProvider:UserProvider) {
     this.initializeApp();
-
+    if(this.userProvider.currentUser()) this.rootPage = HomePage;
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },

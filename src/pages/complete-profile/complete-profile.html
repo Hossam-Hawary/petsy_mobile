@@ -16,6 +16,11 @@
 <ion-content padding>
 	<ion-list no-lines>
 	 	<p>let's setup your profile in a few minutes </p>
+	 	   <div ><img class="avatar" [src]="imgSrc || 'assets/imgs/avatar.png'"> </div>
+           <button ion-button (click)="takePhoto()">
+           	<span *ngIf="!imgSrc">Take Photo</span>
+           	<span *ngIf="imgSrc">Change Photo</span>
+           </button>
 	    <form [formGroup]="profileForm" novalidate>
 	 
 	        <ion-item>
@@ -24,7 +29,7 @@
 	             [class.invalid]="!profileForm.controls.name.valid && (profileForm.controls.name.dirty)"></ion-input>
 	        </ion-item>
 	       	<ion-item *ngIf="!profileForm.controls.name.valid && (profileForm.controls.name.dirty )">
-                <p>Please enter a valid Name.</p>
+                <p class="error">Please enter a valid Name.</p>
             </ion-item>
 	 
 	        <ion-item>
@@ -33,7 +38,7 @@
 	             [class.invalid]="!profileForm.controls.username.valid && (profileForm.controls.username.dirty)"></ion-input>
 	        </ion-item>
 	        <ion-item *ngIf="!profileForm.controls.username.valid && (profileForm.controls.username.dirty )">
-                <p>Please enter a valid username.</p>
+                <p class="error" >Please enter a valid username.</p>
             </ion-item>
 	    </form>
 	    	<p class="error">{{errorMessage}}</p>

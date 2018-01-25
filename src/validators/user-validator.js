@@ -1,4 +1,4 @@
-var UserValidator = /** @class */ (function () {
+var UserValidator = (function () {
     function UserValidator() {
     }
     UserValidator.emailValidator = function (control) {

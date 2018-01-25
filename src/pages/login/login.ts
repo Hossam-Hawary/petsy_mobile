@@ -37,15 +37,18 @@ export class LoginPage {
  }
 
  async login(){
- 	console.log(this.loginForm.value)
-     this.errorMessage = "";
-     const result:any = await this.userProvider.login(this.loginForm.value)
-     console.log("login", result)
-     if(result.success){ 
-       this.navCtrl.setRoot(HomePage)
-     }else{
-       this.errorMessage = result.errorMessage;
-     }
+    this.helper.showSpinner()
+ 	  console.log(this.loginForm.value)
+    this.errorMessage = "";
+    const result:any = await this.userProvider.login(this.loginForm.value)
+    console.log("login", result)
+    if(result.success){ 
+      this.userProvider.setUid(result.data.uid)
+      this.navCtrl.setRoot(HomePage)
+    }else{
+      this.errorMessage = result.errorMessage;
+    }
+    this.helper.hideSpinner();
  }
 
  signUp(){

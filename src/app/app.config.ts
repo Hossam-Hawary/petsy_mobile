@@ -1,9 +1,9 @@
 export const FIREBASE_CONFIG =
  {
-    apiKey: "AIzaSyCi-_YHdqnVOH8b13bzf8ewxSt1SUntcMI",
-    authDomain: "petseee-15a07.firebaseapp.com",
-    databaseURL: "https://petseee-15a07.firebaseio.com",
-    projectId: "petseee-15a07",
-    storageBucket: "petseee-15a07.appspot.com",
-    messagingSenderId: "309562242277"
+    apiKey: "AIzaSyBpFdf2wG2DLWyiAgz3ojEeG-d67knEakM",
+    authDomain: "petseee-pet.firebaseapp.com",
+    databaseURL: "https://petseee-pet.firebaseio.com",
+    projectId: "petseee-pet",
+    storageBucket: "petseee-pet.appspot.com",
+    messagingSenderId: "147840900754"
   };

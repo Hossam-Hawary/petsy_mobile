@@ -21,6 +21,7 @@ import { HelperProvider } from '../../providers/helper/helper'
 export class CompleteProfilePage {
 	profileForm:FormGroup
    	errorMessage:string;
+   	imgSrc:string;
    constructor(public navCtrl: NavController, public navParams: NavParams,
   	 public formBuilder: FormBuilder, private userProvider:UserProvider,
      private helper:HelperProvider) {
@@ -29,17 +30,27 @@ export class CompleteProfilePage {
  ngOnInit(){
 
     this.profileForm = this.formBuilder.group({
-        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-        username: ['', Validators.compose([Validators.maxLength(30),Validators.pattern('[a-z]*'), Validators.required])],
+        name: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        username: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30),Validators.pattern('[a-zA-Z]*'), Validators.required])],
     });
  }
+	async takePhoto(){
+		let photo = await this.helper.takePhoto();
+		if (photo) {
+			this.helper.showSpinner();
+			const result:any = await this.userProvider.uploadPhotoToStorage(photo)
+			console.log("data",result)
+			if (result.success) this.imgSrc = result.data.downloadURL;
+			this.helper.hideSpinner();
+		}
+	}
 
-
-  createProfile(){
- 	 this.userProvider.createProfile(this.profileForm.value).then(result=>{
- 	 	console.log(result)
- 	 	this.navCtrl.setRoot(HomePage)
- 	 })
+ async createProfile(){
+ 	this.helper.showSpinner();
+ 	const result:any = await this.userProvider.createProfile(this.profileForm.value)
+ 	console.log(result)
+ 	this.helper.hideSpinner();
+ 	if (result.success) this.navCtrl.setRoot(HomePage)
  }
 
   ionViewDidLoad() {

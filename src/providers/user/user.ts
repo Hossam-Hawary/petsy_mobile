@@ -3,6 +3,7 @@ import { ApiProvider } from '../api/api'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { HelperProvider } from '../../providers/helper/helper'
+import { storage } from 'firebase'
 
 /*
   Generated class for the UserProvider provider.
@@ -25,9 +26,21 @@ const  ObjecttoParams = function(obj, key?: any) {
 
 @Injectable()
 export class UserProvider {
-
+  uid:string;
   constructor( private apiProvider:ApiProvider, private afAuth:AngularFireAuth,
     private afDatabase:AngularFireDatabase, private helper:HelperProvider) {
+     this.afAuth.authState.take(1).subscribe(  (auth)=>{
+       console.log("auth..uid....",auth )
+       if(auth) this.uid = auth.uid;
+    })
+  }
+  
+  setUid(uid){
+    this.uid = uid;
+  }
+
+  currentUser(){
+    return this.uid;
   }
 
   loginUser(userData){
@@ -58,10 +71,25 @@ export class UserProvider {
     }
   }
    async createProfile(profileData){
-       this.afAuth.authState.take(1).subscribe( async (auth)=>{
-       await this.afDatabase.object(`profile/${auth.uid}`).set(profileData)
-    })
+    if(!this.uid) return false;
+    try{
+        return { success:true, data: await this.afDatabase.object(`profile/${this.uid}`).set(profileData)}
+     }
+     catch(err){
+        return {success:false, error:err};
+     }
   }
+
+  async uploadPhotoToStorage(photo){
+    if(!this.uid) return false;
+      try{
+        const pictures = storage().ref(`imgs/profiles/${this.uid}`)
+        return{ success:true,data: await pictures.putString(photo,'data_url')}
+      }
+      catch(err){
+        return {success:false, error:err};
+      }
+    }
 
   getFirebaseErrorMessage(afErr){
 
@@ -77,5 +105,6 @@ export class UserProvider {
     }
 
   }
+
 
 }

@@ -35,15 +35,19 @@ export class SignUpPage {
  }
 
  async register(){
+   this.helper.showSpinner()
  	console.log(this.signupForm.value)
     this.errorMessage = "";
     const result:any = await this.userProvider.register(this.signupForm.value);
     console.log("register", result)
      if(result.success){ 
+       this.userProvider.setUid(result.data.uid)
        this.navCtrl.setRoot('CompleteProfilePage')
+
      }else{
        this.errorMessage = result.errorMessage;
      }
+     this.helper.hideSpinner();
    }
 
  login(){
