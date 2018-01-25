@@ -47,8 +47,10 @@ export class MyApp {
         });
       this.userProvider.afAuth.authState.take(1).subscribe(  (auth)=>{
         console.log("auth..uid....",auth )
-        if(auth) this.userProvider.setAuth(auth);
-        this.rootPage = HomePage;
+        if(auth) {
+          this.userProvider.setAuth(auth)
+          this.rootPage = HomePage;
+        }
         this.splashScreen.hide();
       })
               // this language will be used as a fallback when a translation isn't found in the current language

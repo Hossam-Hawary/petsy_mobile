@@ -114,13 +114,15 @@ export class HelperProvider {
 
      const options: CameraOptions = {
         quality: 100, //0-100
-        targetWidth:600, //px
-        targetHeight:600, //px
+        targetWidth:700, //px
+        targetHeight:700, //px
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.PNG,
         mediaType: this.camera.MediaType.PICTURE,
         correctOrientation:true,
-        saveToPhotoAlbum:false
+        cameraDirection:this.camera.Direction.FRONT,
+        saveToPhotoAlbum:false,
+        allowEdit:true
       }
        const imageData =  await this.camera.getPicture(options)
       return  'data:image/png;base64,' + imageData;

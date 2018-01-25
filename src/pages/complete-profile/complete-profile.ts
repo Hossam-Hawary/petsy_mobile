@@ -32,6 +32,7 @@ export class CompleteProfilePage {
     this.profileForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z]{3}[ ]*[a-zA-Z ]*'), Validators.required])],
         username: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30),Validators.pattern('[a-zA-Z]*'), Validators.required])],
+        img: ['']
     });
  }
 	async takePhoto(){
@@ -41,6 +42,7 @@ export class CompleteProfilePage {
 			const result:any = await this.userProvider.uploadPhotoToStorage(photo)
 			console.log("data",result)
 			if (result.success) this.imgSrc = result.data.downloadURL;
+      this.profileForm.controls.img.setValue(this.imgSrc)
 			this.helper.hideSpinner();
 		}
 	}

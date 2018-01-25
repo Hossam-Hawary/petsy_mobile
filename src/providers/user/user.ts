@@ -76,7 +76,15 @@ export class UserProvider {
         return {success:false, error:err};
      }
   }
-
+    loadProfie(){
+    if(!this.auth) return false;
+    try{
+        return { success:true, data:  this.afDatabase.object(`profile/${this.auth.uid}`).valueChanges()}
+     }
+     catch(err){
+        return {success:false, error:err};
+     }
+  }
   async uploadPhotoToStorage(photo){
     if(!this.auth) return false;
       try{
@@ -89,7 +97,9 @@ export class UserProvider {
   }
 
   signOut(){
-    this.afAuth.auth.signOut()
+    this.afAuth.auth.signOut().then((data)=>{
+      console.log("logout data", data)
+    })
     this.auth = null;
   }
 

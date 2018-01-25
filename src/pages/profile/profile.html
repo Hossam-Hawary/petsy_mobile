@@ -2,6 +2,9 @@
 <ion-header>
 
   <ion-navbar>
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Profile</ion-title>
   </ion-navbar>
 
@@ -9,13 +12,18 @@
 
 
 <ion-content padding>
-	<ion-list no-lines>
-
+	<ion-item>
+	  	<h1 class="name"> {{ (profile | async)?.name }}</h1>
+	</ion-item>
+	<ion-list>
 		<ion-item>
-		
+			<img class="avatar" [src]="(profile | async)?.img || 'assets/imgs/avatar.png' ">
 		</ion-item>	
 		<ion-item>
-		
+		  	<h2> <ion-icon name="person"></ion-icon> @{{ (profile | async)?.username }}</h2>
+		</ion-item>
+		<ion-item>
+		  	<h2><ion-icon name="mail"></ion-icon> {{ (profile | async)?.email }}</h2>
 		</ion-item>
 	</ion-list>
 
