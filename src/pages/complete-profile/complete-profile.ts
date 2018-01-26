@@ -32,7 +32,8 @@ export class CompleteProfilePage {
     this.profileForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z]{3}[ ]*[a-zA-Z ]*'), Validators.required])],
         username: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30),Validators.pattern('[a-zA-Z]*'), Validators.required])],
-        img: ['']
+        img: [''],
+        phoneNumber:['', Validators.compose([Validators.pattern('[0-9]{11}'), Validators.required])]
     });
  }
 	async takePhoto(){
@@ -49,14 +50,23 @@ export class CompleteProfilePage {
 
  async createProfile(){
  	this.helper.showSpinner();
- 	const result:any = await this.userProvider.createProfile(this.profileForm.value)
- 	console.log(result)
- 	this.helper.hideSpinner();
- 	if (result.success) this.navCtrl.setRoot(HomePage)
+   this.userProvider.afAuth.authState.take(1).subscribe( async (auth)=>{
+    console.log("auth..uid....",auth )
+    if(auth) {
+      try {       
+      await auth.updateProfile({
+        displayName: this.profileForm.value.name,
+        photoURL:this.imgSrc
+      })
+      this.helper.hideSpinner();
+      this.navCtrl.setRoot(HomePage)
+      }catch(err){
+        this.helper.hideSpinner();
+      }
+    }
+  })
+ 	this.userProvider.createProfile(this.profileForm.value)
  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CompleteProfilePage');
-  }
 
 }

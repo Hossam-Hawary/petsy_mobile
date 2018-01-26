@@ -37,6 +37,12 @@
 	             [class.invalid]="!profileForm.controls.username.valid && (profileForm.controls.username.dirty)"></ion-input>
 	        </ion-item>
             <p *ngIf="!profileForm.controls.username.valid && (profileForm.controls.username.dirty )" class="error" >usernames must be 3-30 letter,and English letters only.</p>
+            <ion-item>
+	            <ion-label floating> Phone Number </ion-label>
+	            <ion-input formControlName="phoneNumber"
+	             [class.invalid]="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty)"></ion-input>
+	        </ion-item>
+            <p *ngIf="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty )" class="error" >Please provaid a valid phone number</p>
 	    </form>
 	    	<p class="error">{{errorMessage}}</p>
 	 	  <button ion-button full color="primary" [disabled]="!profileForm.valid"(click)="createProfile()">Create Account!

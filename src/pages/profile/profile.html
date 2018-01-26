@@ -11,19 +11,24 @@
 </ion-header>
 
 
-<ion-content padding>
-	<ion-item>
-	  	<h1 class="name"> {{ (profile | async)?.name }}</h1>
-	</ion-item>
-	<ion-list>
-		<ion-item>
-			<img class="avatar" [src]="(profile | async)?.img || 'assets/imgs/avatar.png' ">
+<ion-content>
+	<ion-list >
+		<ion-item color="dark">
+			<img class="avatar" [src]="(auth)?.photoURL || 'assets/imgs/avatar.png' ">
 		</ion-item>	
-		<ion-item>
+		<ion-item color="light">
+	  		<h1 class="name"> {{ auth?.displayName }}</h1>
+		</ion-item>
+		<ion-item color="light">
 		  	<h2> <ion-icon name="person"></ion-icon> @{{ (profile | async)?.username }}</h2>
 		</ion-item>
-		<ion-item>
-		  	<h2><ion-icon name="mail"></ion-icon> {{ (profile | async)?.email }}</h2>
+		<ion-item color="light">
+		  	<h2><ion-icon name="mail"></ion-icon> {{ auth?.email }}</h2>
+		  	<p *ngIf="!auth?.emailVerified" class="hint" >Not Verifyed</p>
+		</ion-item>
+		<ion-item color="light">
+		  	<h2><ion-icon name="phone-portrait"></ion-icon> {{ (profile | async)?.phoneNumber  }}</h2>
+		  	<p *ngIf="!auth?.emailVerified" class="hint" >Not Verifyed</p>
 		</ion-item>
 	</ion-list>
 

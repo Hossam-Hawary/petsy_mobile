@@ -1,16 +1,21 @@
 page-profile {
 	.avatar {
-
 		display: block;
-		width: 150px;
-		height: 150px;
+		width: 200px;
+		height: 200px;
 		border-radius: 50%;
    		margin-left: auto;
     	margin-right: auto;
     }
     .name {
-  		font-size: 22px;
+  		font-size: 28px;
   		text-align: center;
+      height: 70px;
+    }
+    .hint{
+      font-size: .8em;
+      color:#888888;
+      text-align: center;
     }
 
 }
