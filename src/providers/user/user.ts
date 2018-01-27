@@ -29,6 +29,11 @@ export class UserProvider {
   auth:any;
   constructor( private apiProvider:ApiProvider, public afAuth:AngularFireAuth,
     private afDatabase:AngularFireDatabase, private helper:HelperProvider) {
+      this.afAuth.authState.subscribe(  (auth)=>{
+        if(auth) {
+          this.setAuth(auth)
+        }
+      })
   }
 
   setAuth(auth){

@@ -26,6 +26,13 @@ export class ProfilePage {
   	this.getProfile()
   }
 	 getProfile(){
+      // this.userProvider.afAuth.authState.take(1).subscribe(  (auth)=>{
+      //   if(auth) {
+      //     this.userProvider.setAuth(auth)
+      //     this.auth = auth   
+      //   }
+      // })
+
 		const result:any  =  this.userProvider.loadProfie()
 		if(result.success) this.profile = result.data
 	}

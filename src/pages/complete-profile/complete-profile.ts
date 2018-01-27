@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms'
-import { UserValidator } from  '../../validators/user-validator';
 import { HomePage } from '../home/home'
 import { UserProvider } from '../../providers/user/user'
 import { HelperProvider } from '../../providers/helper/helper'
@@ -58,6 +57,7 @@ export class CompleteProfilePage {
         displayName: this.profileForm.value.name,
         photoURL:this.imgSrc
       })
+      auth.sendEmailVerification();
       this.helper.hideSpinner();
       this.navCtrl.setRoot(HomePage)
       }catch(err){
