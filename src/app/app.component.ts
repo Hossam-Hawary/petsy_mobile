@@ -49,7 +49,7 @@ export class MyApp {
         console.log("auth..uid....",auth )
         if(auth) {
           this.userProvider.setAuth(auth)
-          this.rootPage = 'CompleteProfilePage';
+          this.rootPage = 'HomePage';
         }
         this.splashScreen.hide();
       })
