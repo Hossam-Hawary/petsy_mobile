@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>Crearte Profile</ion-title>
   </ion-navbar>
 
@@ -17,7 +17,7 @@
 	<ion-list no-lines>
 	 	<p class="msg">let's setup your profile in a few minutes </p>
 	 	   <div ><img class="avatar" [src]="imgSrc || 'assets/imgs/avatar.png'"> </div>
-           <button ion-button (click)="takePhoto()" color="dark">
+           <button ion-button (click)="takePhoto()" color="secondary">
            	<span *ngIf="!imgSrc">Take Photo</span>
            	<span *ngIf="imgSrc">Change Photo</span>
            </button>
@@ -45,7 +45,7 @@
             <p *ngIf="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty )" class="error" >Please provaid a valid phone number</p>
 	    </form>
 	    	<p class="error">{{errorMessage}}</p>
-	 	  <button ion-button full color="dark" [disabled]="!profileForm.valid"(click)="createProfile()">Create Account!
+	 	  <button ion-button full color="primary" [disabled]="!profileForm.valid"(click)="createProfile()">Create Account!
 	 	  </button>
 	</ion-list>
 </ion-content>

@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="secondary">
   	<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -20,14 +20,14 @@
 	  		<h1 class="name"> {{ auth?.displayName }}</h1>
 		</ion-item>
 		<ion-item color="light">
-		  	<h2> <ion-icon name="person"></ion-icon> @{{ (profile | async)?.username }}</h2>
+		  	<h2> <ion-icon color="primary" name="person"></ion-icon> @{{ (profile | async)?.username }}</h2>
 		</ion-item>
 		<ion-item color="light">
-		  	<h2><ion-icon name="mail"></ion-icon> {{ auth?.email }}</h2>
+		  	<h2><ion-icon name="mail" color="primary"></ion-icon> {{ auth?.email }}</h2>
 		  	<p *ngIf="!auth?.emailVerified" class="hint" >Not Verifyed</p>
 		</ion-item>
 		<ion-item color="light">
-		  	<h2><ion-icon name="phone-portrait"></ion-icon> {{ (profile | async)?.phoneNumber  }}</h2>
+		  	<h2><ion-icon color="primary" name="phone-portrait"></ion-icon> {{ (profile | async)?.phoneNumber  }}</h2>
 		  	<p  class="hint" >Not Verifyed</p>
 		</ion-item>
 	</ion-list>

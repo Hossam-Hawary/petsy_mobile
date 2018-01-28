@@ -31,7 +31,7 @@ import { Camera } from '@ionic-native/camera';
   export function createTranslateLoader(http: HttpClient) {
       return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
-  const IonicPro = Pro.init('1430dc61', {
+  const IonicPro = Pro.init('e9c41020', {
     appVersion: "0.0.1"
   });
 
