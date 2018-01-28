@@ -58,6 +58,7 @@ export class MyApp {
          // the lang to use, if the lang isn't available, it will use the current loader to get them
       this.translate.use('en');
       this.statusBar.styleDefault();
+      this.statusBar.overlaysWebView(false)
     });
   }
 

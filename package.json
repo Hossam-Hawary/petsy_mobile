@@ -68,12 +68,12 @@
       "cordova-plugin-native-spinner": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-x-toast": {},
       "ionic-plugin-keyboard": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-statusbar": {}
     },
     "platforms": [
       "android"
