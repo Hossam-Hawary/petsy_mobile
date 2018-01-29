@@ -1,0 +1,69 @@
+<!--
+  Generated template for the PetNewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Add Pet</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+<img class="avatar" [src]="(pet)?.photoUrl || 'assets/icon/pet1.png' ">
+<button ion-button class="action-btn" outline (click)="takePhoto()" color="secondary">
+	<span *ngIf="!imgSrc">Add Photo</span>
+	<span *ngIf="imgSrc">Change Photo</span>
+</button>
+<ion-item >
+	<ion-label color="secondary" stacked>Name</ion-label>
+  	<ion-input [(ngModel)]="(pet).name"></ion-input>
+</ion-item>
+
+<ion-item>
+ 	<ion-label color="secondary" stacked > Breed</ion-label>
+  	<ion-input  [(ngModel)]="pet.breed"></ion-input>
+</ion-item>
+
+<ion-item>
+	 <ion-label color="secondary" stacked > Gender</ion-label>
+	 <ion-input  [(ngModel)]="pet.gender"></ion-input>
+</ion-item>
+
+<ion-item>
+	<ion-label color="secondary" stacked > color</ion-label>
+  	<ion-input  [(ngModel)]="pet.color"></ion-input>
+</ion-item>
+
+<ion-item>
+ 	<ion-label color="secondary" stacked > Birth Of Date</ion-label>
+  	<ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="pet.birthOfDate"></ion-datetime>
+
+</ion-item>
+<ion-item>
+ 	<ion-label color="secondary" stacked > Description</ion-label>
+    <ion-input ></ion-input>
+</ion-item>
+<ion-item>
+ 	<ion-label color="secondary" stacked > Pet Insurance Info</ion-label>
+    <ion-input  [(ngModel)]="pet.insuranceInfo"></ion-input>
+</ion-item>
+<ion-item>
+ 	<ion-label color="secondary" stacked >  Health & Diet Needs </ion-label>
+   	<ion-input  [(ngModel)]="pet.healthAndDiet" ></ion-input>
+</ion-item>
+<ion-item>
+ 	<ion-label color="secondary" stacked > Favorite Activities/Toys/Treats</ion-label>
+ 	<ion-input  [(ngModel)]="pet.favoriteActivities"></ion-input>
+</ion-item>
+<button ion-button block  outline (click)="addPet()" color="primary">
+	Add Pet
+</button>
+</ion-content>

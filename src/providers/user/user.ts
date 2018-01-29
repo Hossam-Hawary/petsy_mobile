@@ -81,6 +81,17 @@ export class UserProvider {
         return {success:false, error:err};
      }
   }
+
+    async addPet(petData){
+      if(!this.auth) return false;
+      try{
+          return { success:true, data: await this.afDatabase.list(`pets/${this.auth.uid}/`).push(petData)}
+       }
+       catch(err){
+          return {success:false, error:err};
+       }
+    }
+
     loadProfie(){
     if(!this.auth) return false;
     try{
@@ -100,7 +111,16 @@ export class UserProvider {
         return {success:false, error:err};
       }
   }
-
+  async uploadPetPhotoToStorage(photo,name){
+    if(!this.auth) return false;
+      try{
+        const pictures = storage().ref(`imgs/pets/${this.auth.uid}/${name}`)
+        return{ success:true,data: await pictures.putString(photo,'data_url')}
+      }
+      catch(err){
+        return {success:false, error:err};
+      }
+  }
   signOut(){
     this.afAuth.auth.signOut().then((data)=>{
       console.log("logout data", data)
