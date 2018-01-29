@@ -1,0 +1,61 @@
+
+<ion-header>
+
+  <ion-navbar color="secondary">
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pet Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+		<img class="avatar" [src]="(pet)?.photoUrl || 'assets/icon/pet1.png' ">
+<ion-label color="primary" stacked>Name</ion-label>
+<ion-item >
+ {{(pet)?.name}}
+</ion-item>
+
+ <ion-label color="primary" stacked > Breed</ion-label>
+<ion-item>
+    {{(pet)?.breed}}
+</ion-item>
+
+ <ion-label color="primary" stacked > Gender</ion-label>
+<ion-item>
+   {{(pet)?.gender}}
+</ion-item>
+
+ <ion-label color="primary" stacked > color</ion-label>
+<ion-item>
+    {{(pet)?.color}}
+</ion-item>
+
+ <ion-label color="primary" stacked > Age</ion-label>
+<ion-item>
+    {{(pet)?.age}}
+</ion-item>
+
+ <ion-label color="primary" stacked > Birth Of Date</ion-label>
+<ion-item>
+    {{(pet)?.birthOfDate}}
+</ion-item>
+ <ion-label color="primary" stacked > Description</ion-label>
+<ion-item>
+    {{(pet)?.description}}
+</ion-item>
+ <ion-label color="primary" stacked > Pet Insurance Info</ion-label>
+<ion-item>
+    {{(pet)?.insuranceInfo}}
+</ion-item>
+ <ion-label color="primary" stacked >  Health & Diet Needs </ion-label>
+<ion-item>
+   {{(pet)?.healthAndDiet}}
+</ion-item>
+ <ion-label color="primary" stacked > Favorite Activities/Toys/Treats</ion-label>
+<ion-item>
+    {{(pet)?.favoriteActivities}}
+</ion-item>
+</ion-content>
