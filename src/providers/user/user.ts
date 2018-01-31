@@ -75,7 +75,7 @@ export class UserProvider {
     if(!this.auth) return false;
     profileData.email = this.auth.email;
     try{
-        return { success:true, data: await this.afDatabase.object(`profile/${this.auth.uid}`).set(profileData)}
+        return { success:true, data: await this.afDatabase.object(`${this.auth.uid}/profile`).set(profileData)}
      }
      catch(err){
         return {success:false, error:err};
@@ -85,7 +85,7 @@ export class UserProvider {
     async addPet(petData){
       if(!this.auth) return false;
       try{
-          return { success:true, data: await this.afDatabase.list(`pets/${this.auth.uid}/`).push(petData)}
+          return { success:true, data: await this.afDatabase.list(`${this.auth.uid}/pets`).push(petData)}
        }
        catch(err){
           return {success:false, error:err};
@@ -95,16 +95,27 @@ export class UserProvider {
     loadProfie(){
     if(!this.auth) return false;
     try{
-        return { success:true, data:  this.afDatabase.object(`profile/${this.auth.uid}`).valueChanges()}
+        return { success:true, data:  this.afDatabase.object(`${this.auth.uid}/profile`).valueChanges()}
      }
      catch(err){
         return {success:false, error:err};
      }
-  }
+   }
+
+   loadUserPets(){
+    if(!this.auth) return false;
+    try{
+        return { success:true, data:   this.afDatabase.list(`${this.auth.uid}/pets`).valueChanges()}
+     }
+     catch(err){
+        return {success:false, error:err};
+     }
+   }
+
   async uploadPhotoToStorage(photo){
     if(!this.auth) return false;
       try{
-        const pictures = storage().ref(`imgs/profiles/${this.auth.uid}`)
+        const pictures = storage().ref(`images/${this.auth.uid}/photos/profile`)
         return{ success:true,data: await pictures.putString(photo,'data_url')}
       }
       catch(err){
@@ -114,7 +125,7 @@ export class UserProvider {
   async uploadPetPhotoToStorage(photo,name){
     if(!this.auth) return false;
       try{
-        const pictures = storage().ref(`imgs/pets/${this.auth.uid}/${name}`)
+        const pictures = storage().ref(`images/${this.auth.uid}/pets/${name}`)
         return{ success:true,data: await pictures.putString(photo,'data_url')}
       }
       catch(err){

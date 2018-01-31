@@ -12,6 +12,7 @@ export class PetDetailsPage {
 	pet:Pet
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	this.pet = navParams.get('pet')
   	
   }
 

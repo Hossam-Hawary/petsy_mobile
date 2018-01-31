@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Pet } from '../../models/pet'
+import { UserProvider } from '../../providers/user/user'
+import { HelperProvider } from '../../providers/helper/helper'
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
 
 /**
  * Generated class for the PetListPage page.
@@ -15,13 +19,22 @@ import { Pet } from '../../models/pet'
   templateUrl: 'pet-list.html',
 })
 export class PetListPage {
-	pets:Pet[]
+	pets:AngularFireList<Pet[]>
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  	private helper:HelperProvider, private userProvider:UserProvider) {
+  	this.getPets()
   }
 
- addNewPet(){
- 	this.navCtrl.push('PetNewPage')
- }
+	 addNewPet(){
+	 	this.navCtrl.push('PetNewPage')
+	 }
+	  getPets(){ 
+		const result:any  =  this.userProvider.loadUserPets()
+		if(result.success) this.pets = result.data
+	}
+	showPet(pet){
+		this.navCtrl.push('PetDetailsPage',{pet:pet})
+	}
 
 }

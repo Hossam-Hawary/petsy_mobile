@@ -15,6 +15,18 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
+        @font-face {
+            font-family: "PatuaOne-Regular";
+            src: url('../assets/fonts/PatuaOne-Regular.ttf');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .select-alert * , ion-alert * , ion-toolbar , ion-label , .ion-page {
+          font-family: "PatuaOne-Regular";
+        }
+
         .menu-icons{
             color: color($colors, primary);
         }

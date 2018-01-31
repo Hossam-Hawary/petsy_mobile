@@ -25,7 +25,7 @@ export class PetNewPage {
 	 	let photo = await this.helper.takePhoto();
 		if (photo) {
 			this.helper.showSpinner();
-			const result:any = await this.userProvider.uploadPetPhotoToStorage(photo, this.pet.name + Date.now())
+			const result:any = await this.userProvider.uploadPetPhotoToStorage(photo, this.pet.name + Date.now().toString())
 			console.log("data",result)
 			if (result.success) this.pet.photoUrl = result.data.downloadURL;
 			this.helper.hideSpinner();
@@ -33,7 +33,8 @@ export class PetNewPage {
 	}
 	async addPet(){
 	this.helper.showSpinner();
- 	await this.userProvider.addPet(this.pet)
+ 	this.userProvider.addPet(this.pet)
+ 	this.navCtrl.pop()
  	this.helper.hideSpinner();
 	}
 }
