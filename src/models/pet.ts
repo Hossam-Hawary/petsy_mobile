@@ -5,7 +5,7 @@ export interface Pet {
 	description:string,
 	color:string,
 	age:number,
-	birthOfDate:string,
+	dateOfBirth:string,
 	photoUrl:string,
 	healthAndDiet:string,
 	favoriteActivities:string,
