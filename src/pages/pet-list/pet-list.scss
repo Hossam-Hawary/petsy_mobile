@@ -1,0 +1,9 @@
+page-pet-list {
+	.no-pet-msg{
+		text-align: center;
+		color: color($colors, secondary);
+	}
+	.no-pet-img{
+		opacity:.5;
+	}
+}

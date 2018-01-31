@@ -86,3 +86,7 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+$ionicons-font-path: "../assets/fonts";
+$fa-font-path: "../assets/fonts/font-awesome";
+@import "ionic.ionicons";
+@import "font-awesome/font-awesome";
