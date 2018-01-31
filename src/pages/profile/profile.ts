@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user'
 import { HelperProvider } from '../../providers/helper/helper'
+import { AngularFireObject } from 'angularfire2/database';
+
 // import { FirebaseObjectObservable } from 'angularfire2/database'
 
 /**
@@ -18,7 +20,7 @@ import { HelperProvider } from '../../providers/helper/helper'
 })
 export class ProfilePage {
 	auth:any;
-	profile:any;
+	profile:AngularFireObject<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	private helper:HelperProvider, private userProvider:UserProvider) {

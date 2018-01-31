@@ -18,7 +18,7 @@
 
 <ion-content >
 <img class="avatar" [src]="(pet)?.photoUrl || 'assets/icon/pet1.png' ">
-<button ion-button class="action-btn" outline (click)="takePhoto()" color="secondary">
+<button ion-button class="action-btn" outline round (click)="takePhoto()" color="secondary">
 	<span *ngIf="!imgSrc">Add Photo</span>
 	<span *ngIf="imgSrc">Change Photo</span>
 </button>

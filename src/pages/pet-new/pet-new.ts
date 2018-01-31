@@ -31,10 +31,8 @@ export class PetNewPage {
 			this.helper.hideSpinner();
 		}
 	}
-	async addPet(){
-	this.helper.showSpinner();
+	addPet(){
  	this.userProvider.addPet(this.pet)
  	this.navCtrl.pop()
- 	this.helper.hideSpinner();
 	}
 }

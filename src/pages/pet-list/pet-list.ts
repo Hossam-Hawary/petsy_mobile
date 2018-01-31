@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Pet } from '../../models/pet'
 import { UserProvider } from '../../providers/user/user'
 import { HelperProvider } from '../../providers/helper/helper'
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireList } from 'angularfire2/database';
 
 
 /**
