@@ -49,8 +49,8 @@ export class MyApp {
       this.userProvider.afAuth.authState.take(1).subscribe(  (auth)=>{
         console.log("auth..uid....",auth )
         if(auth) {
+          this.rootPage = HomePage;
           this.userProvider.setAuth(auth)
-          this.rootPage = "CompleteProfilePage";
         }
         this.splashScreen.hide();
       })

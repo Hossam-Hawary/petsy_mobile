@@ -45,7 +45,7 @@
             <p *ngIf="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty )" class="error" >Please provaid a valid phone number</p>
 	    </form>
 	    	<p class="error">{{errorMessage}}</p>
-	 	  <button ion-button block outline color="primary" [disabled]="!profileForm.valid"(click)="createProfile()">Create Account!
+	 	  <button ion-button block round outline color="primary" [disabled]="!profileForm.valid"(click)="createProfile()">Create Account!
 	 	  </button>
 	</ion-list>
 </ion-content>
