@@ -23,7 +23,7 @@ export class UserValidator {
 
 	
     static fullnameValidator(control) {
-        if (control.value && control.value.match(/^[a-zA-Z]{1}[a-zA-Z -_]{2,50}$/)) {
+        if (control.value && control.value.match(/^[a-zA-Z]{1}[a-zA-Z\. \-_]{2,50}$/)) {
             return null;
         } else {
             return { 'invalidPassword': true };
