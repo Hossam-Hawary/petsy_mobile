@@ -30,7 +30,7 @@ export class SignUpPage {
 
     this.signupForm = this.formBuilder.group({
         email: ['', Validators.compose([Validators.maxLength(50), Validators.required, UserValidator.emailValidator])],
-        password: ['', Validators.compose([Validators.minLength(6),Validators.maxLength(30), Validators.required, UserValidator.passwordValidator])]
+        password: ['', Validators.compose([Validators.required, UserValidator.passwordValidator])]
     });
  }
 

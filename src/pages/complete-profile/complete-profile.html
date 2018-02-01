@@ -24,21 +24,21 @@
 	    <form [formGroup]="profileForm" novalidate>
 	 
 	        <ion-item>
-	            <ion-label floating> Full Name </ion-label>
+	            <ion-label color="primary"  floating> Full Name </ion-label>
 	            <ion-input formControlName="name" type="text"
 	             [class.invalid]="!profileForm.controls.name.valid && (profileForm.controls.name.dirty)"></ion-input>
 	        </ion-item>
-            <p *ngIf="!profileForm.controls.name.valid && (profileForm.controls.name.dirty )" class="error"> Full names must be 3-30 letter, and can include wight spaces.
+            <p *ngIf="!profileForm.controls.name.valid && (profileForm.controls.name.dirty )" class="error"> Full names must be 3-60 letter, and can include<br>( wight spaces, - , _, . )
             </p>
 
 	        <ion-item>
-	            <ion-label floating> Username </ion-label>
+	            <ion-label color="primary" floating> Username </ion-label>
 	            <ion-input formControlName="username"
 	             [class.invalid]="!profileForm.controls.username.valid && (profileForm.controls.username.dirty)"></ion-input>
 	        </ion-item>
-            <p *ngIf="!profileForm.controls.username.valid && (profileForm.controls.username.dirty )" class="error" >usernames must be 3-30 letter,and English letters only.</p>
+            <p *ngIf="!profileForm.controls.username.valid && (profileForm.controls.username.dirty )" class="error" >usernames must be 3-50 letter,and English letters only.</p>
             <ion-item>
-	            <ion-label floating> Phone Number </ion-label>
+	            <ion-label color="primary" floating> Phone Number </ion-label>
 	            <ion-input formControlName="phoneNumber"
 	             [class.invalid]="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty)"></ion-input>
 	        </ion-item>

@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup} from '@angular/forms'
 import { HomePage } from '../home/home'
 import { UserProvider } from '../../providers/user/user'
 import { HelperProvider } from '../../providers/helper/helper'
+import { UserValidator } from  '../../validators/user-validator';
 
 /**
  * Generated class for the CompleteProfilePage page.
@@ -29,8 +30,8 @@ export class CompleteProfilePage {
  ngOnInit(){
 
     this.profileForm = this.formBuilder.group({
-        name: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z]{3}[ ]*[a-zA-Z ]*'), Validators.required])],
-        username: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30),Validators.pattern('[a-zA-Z]*'), Validators.required])],
+        name: ['', Validators.compose([UserValidator.fullnameValidator, Validators.required])],
+        username: ['', Validators.compose([UserValidator.usernameValidator, Validators.required])],
         img: [''],
         phoneNumber:['', Validators.compose([Validators.pattern('[0-9]{11}'), Validators.required])]
     });
