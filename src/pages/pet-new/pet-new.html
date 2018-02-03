@@ -7,9 +7,11 @@
 <ion-header>
 
   <ion-navbar color="secondary">
-  	<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-buttons  end (click)="close()" >
+      <button ion-button  >
+        Cancel
+      </button>
+    </ion-buttons>
     <ion-title>Add Pet</ion-title>
   </ion-navbar>
 
@@ -69,6 +71,6 @@
  	<ion-input  [(ngModel)]="pet.favoriteActivities"></ion-input>
 </ion-item>
 <button ion-button block  outline round (click)="addPet()" color="primary">
-	Add Pet
+	Save
 </button>
 </ion-content>

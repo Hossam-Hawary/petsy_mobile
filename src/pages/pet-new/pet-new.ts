@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Pet } from '../../models/pet'
 import { UserProvider } from '../../providers/user/user'
 import { HelperProvider } from '../../providers/helper/helper'
@@ -19,7 +19,7 @@ export class PetNewPage {
 	pet:Pet = {} as Pet;
 	photoType:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	 private userProvider:UserProvider, private helper:HelperProvider ) {
+  	 private userProvider:UserProvider, private helper:HelperProvider, private ViewCtrl:ViewController ) {
   }
 
 	async takePhoto(){
@@ -41,5 +41,9 @@ export class PetNewPage {
 	addPet(){
  		this.userProvider.addPet(this.pet, this.photoType)
  		this.navCtrl.pop()
+	}
+
+	close(){
+		this.ViewCtrl.dismiss()
 	}
 }

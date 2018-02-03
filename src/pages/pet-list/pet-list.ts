@@ -27,7 +27,7 @@ export class PetListPage {
   }
 
 	 addNewPet(){
-	 	this.navCtrl.push('PetNewPage')
+	 	this.helper.createModal('PetNewPage').present()
 	 }
 	  getPets(){ 
 		const result:any  =  this.userProvider.loadUserPets()

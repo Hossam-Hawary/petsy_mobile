@@ -5,6 +5,11 @@
   	<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-buttons  end (click)="addNewPet()" >
+      <button ion-button icon-only class="add-btn">
+        <ion-icon name="add"></ion-icon> 
+      </button>
+  </ion-buttons>
     <ion-title>My Pets</ion-title>
   </ion-navbar>
 
@@ -12,12 +17,7 @@
 
 
 <ion-content padding>
-    <ion-buttons  end  (click)="addNewPet()" >
-      <button ion-button block outline round>
-        <ion-icon name="add"></ion-icon> 
-        Add Pet 
-      </button>
-  </ion-buttons>
+
   <ion-list>
     <ion-item   tappable *ngFor="let pet of pets | async" (click)="showPet(pet)" >
       <ion-thumbnail item-start>
