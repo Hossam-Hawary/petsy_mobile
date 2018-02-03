@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { HelperProvider } from '../../providers/helper/helper'
 import { storage } from 'firebase'
+import { File } from '@ionic-native/file';
 
 /*
   Generated class for the UserProvider provider.
@@ -28,7 +29,7 @@ const  ObjecttoParams = function(obj, key?: any) {
 export class UserProvider {
   auth:any;
   constructor( private apiProvider:ApiProvider, public afAuth:AngularFireAuth,
-    private afDatabase:AngularFireDatabase, private helper:HelperProvider) {
+    private afDatabase:AngularFireDatabase, private helper:HelperProvider, private file: File) {
       this.afAuth.authState.subscribe(  (auth)=>{
         if(auth) {
           this.setAuth(auth)
@@ -82,15 +83,6 @@ export class UserProvider {
      }
   }
 
-    async addPet(petData){
-      if(!this.auth) return false;
-      try{
-          return { success:true, data: await this.afDatabase.list(`${this.auth.uid}/pets`).push(petData)}
-       }
-       catch(err){
-          return {success:false, error:err};
-       }
-    }
 
     loadProfie(){
     if(!this.auth) return false;
@@ -112,6 +104,27 @@ export class UserProvider {
      }
    }
 
+  async addPet(petData){
+      if(!this.auth) return false;
+      this.helper.showSpinner();
+      if(petData.photoUrl){
+        const photoResult:any = await this.uploadPetLocalPhotoToStorage(petData.photoUrl)
+        petData.photoUrl = ""
+        if(photoResult.success)petData.photoUrl = photoResult.data.downloadURL
+      } 
+      try{
+        const result = await this.afDatabase.list(`${this.auth.uid}/pets`).push(petData)
+        this.helper.hideSpinner();
+        console.log("pet result", result)
+          return { success:true, data:result }
+       }
+       catch(err){
+          this.helper.hideSpinner();
+          return {success:false, error:err};
+       }
+
+  }
+
   async uploadPhotoToStorage(photo){
     if(!this.auth) return false;
       try{
@@ -122,6 +135,21 @@ export class UserProvider {
         return {success:false, error:err};
       }
   }
+  
+  async uploadPetLocalPhotoToStorage(fileUri){
+    const entry = await this.file.resolveLocalFilesystemUrl(fileUri)
+    const buffer = await this.helper.resolveFileUriToBuffer(entry) 
+    let blob = new Blob([buffer],{type:'image/jpeg'})
+    try{
+      const pictures = storage().ref(`images/${this.auth.uid}/pets/${entry.name}`)
+      return{ success:true,data: await pictures.put(blob)}
+    }
+    catch(err){
+      return {success:false, error:err};
+    }
+
+   }
+
   async uploadPetPhotoToStorage(photo,name){
     if(!this.auth) return false;
       try{
@@ -132,6 +160,7 @@ export class UserProvider {
         return {success:false, error:err};
       }
   }
+
   signOut(){
     this.afAuth.auth.signOut().then((data)=>{
       console.log("logout data", data)

@@ -21,7 +21,7 @@ export class PetNewPage {
   	 private userProvider:UserProvider, private helper:HelperProvider ) {
   }
 
-	 async takePhoto(){
+	async takePhoto(){
 	 	let photo = await this.helper.takePhoto();
 		if (photo) {
 			this.helper.showSpinner();
@@ -31,8 +31,16 @@ export class PetNewPage {
 			this.helper.hideSpinner();
 		}
 	}
+	async uploadPhoto(){
+		const result:any = await this.helper.uploadImage()
+		if(result.message) this.helper.createToast(result.message)
+		if(result.success){
+			this.pet.photoUrl = result.fileUri
+		} 			
+	}
+
 	addPet(){
- 	this.userProvider.addPet(this.pet)
- 	this.navCtrl.pop()
+ 		this.userProvider.addPet(this.pet)
+ 		this.navCtrl.pop()
 	}
 }

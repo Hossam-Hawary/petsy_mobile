@@ -38,7 +38,6 @@ export class LoginPage {
 
  async login(){
     this.helper.showSpinner()
- 	  console.log(this.loginForm.value)
     this.errorMessage = "";
     const result:any = await this.userProvider.login(this.loginForm.value)
     console.log("login", result)

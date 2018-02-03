@@ -1,12 +1,13 @@
 import { Injectable, NgZone } from '@angular/core';
-import { LoadingController, ModalController, Platform} from 'ionic-angular';
+import { LoadingController, ModalController, Platform, normalizeURL} from 'ionic-angular';
 import { Toast, ToastOptions } from '@ionic-native/toast';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Pro } from '@ionic/pro';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-
+import { ImagePicker } from '@ionic-native/image-picker';
+import { File } from '@ionic-native/file';
 
 
 
@@ -19,7 +20,8 @@ export class HelperProvider {
   constructor(private loadingCntrl:LoadingController,
   	private modalCtrl:ModalController, private toast:Toast, private socialSharing: SocialSharing,
   	private platform: Platform, private spinnerDialog: SpinnerDialog,private camera:Camera,
-     private translateService: TranslateService, private zone:NgZone) {
+     private translateService: TranslateService, private imgPicker:ImagePicker,private zone:NgZone,
+     private file: File) {
   }
 
     showSpinner(){
@@ -54,7 +56,7 @@ export class HelperProvider {
       this.platform.ready().then(() => {
         let toastOptions: ToastOptions = {
           message:message,
-          duration: 3000,
+          duration: 5000,
           position: position || 'bottom'
          };
         this.toast.showWithOptions(toastOptions).subscribe();
@@ -131,4 +133,28 @@ export class HelperProvider {
         return  null;
      }
    }
+   async uploadImage(options={maximumImagesCount:1}){
+     try{
+       const hasPermession = await this.imgPicker.hasReadPermission()
+       if(!hasPermession) return {success:false, message:this.translate('ERRORS.PERMISSION_DENIED')}
+       const fileUris = await this.imgPicker.getPictures(options)
+       if(fileUris && fileUris != "OK" && fileUris.length){
+          return {success:true,fileUri:normalizeURL(fileUris[0])}
+       }else{
+          return {success:false}
+       }
+
+     }catch(err){
+       return {success:false,error:err}
+     }
+   }
+
+  async resolveFileUriToBuffer(entry){
+    let dirPath = entry.nativeURL;
+    let dirPathSeg = dirPath.split("/")
+    dirPathSeg.pop();
+    dirPath = dirPathSeg.join("/")
+    return await this.file.readAsArrayBuffer(dirPath,entry.name)
+  }
+
 }

@@ -36,7 +36,6 @@ export class SignUpPage {
 
  async register(){
    this.helper.showSpinner()
- 	console.log(this.signupForm.value)
     this.errorMessage = "";
     const result:any = await this.userProvider.register(this.signupForm.value);
     console.log("register", result)

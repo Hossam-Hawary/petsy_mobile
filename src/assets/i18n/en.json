@@ -4,6 +4,7 @@
 	"ERRORS":{
 		"OFFLINE":"No Internet Connection!",
 		"REQUEST":"Something goes wrong!, try again later.",
+		"PERMISSION_DENIED":"Petseee doesn't have the permission to do that!. Please edit Permission for petseee from Mobile Settings first",
 		"FIREBASE":{
 			"EMAIL_NOT_FOUND":"Invalid Email Address!",
 			"INVALID_PASSWORD":"Incorrect Psssword!",

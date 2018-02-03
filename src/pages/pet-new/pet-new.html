@@ -18,10 +18,15 @@
 
 <ion-content >
 <img class="avatar" [src]="(pet)?.photoUrl || 'assets/icon/pet1.png' ">
-<button ion-button class="action-btn" outline round (click)="takePhoto()" color="secondary">
-	<span *ngIf="!imgSrc">Add Photo</span>
-	<span *ngIf="imgSrc">Change Photo</span>
-</button>
+<ion-buttons class="action-btn" >
+  <button ion-button  outline round (click)="takePhoto()" color="secondary">
+  	<span>Take Photo</span>
+  </button>
+  <button ion-button outline round end (click)="uploadPhoto()" color="secondary">
+    <span>Upload Photo</span>
+  </button>
+</ion-buttons>
+
 <ion-item >
 	<ion-label color="secondary" stacked>Name</ion-label>
   	<ion-input [(ngModel)]="(pet).name"></ion-input>

@@ -26,6 +26,9 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { UserProvider } from '../providers/user/user';
 import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { File } from '@ionic-native/file';
+
 
 
   export function createTranslateLoader(http: HttpClient) {
@@ -75,7 +78,7 @@ const pages :any[]=[
     StatusBar, SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HelperProvider, ApiProvider, Network, Toast, SocialSharing, SpinnerDialog,
-    EmailComposer,Camera,
+    EmailComposer,Camera,ImagePicker,File,
     UserProvider
 
   ]
