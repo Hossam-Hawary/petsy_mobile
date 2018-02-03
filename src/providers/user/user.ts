@@ -104,14 +104,12 @@ export class UserProvider {
      }
    }
 
-  async addPet(petData){
+  async addPet(petData, photoType?){
       if(!this.auth) return false;
       this.helper.showSpinner();
-      if(petData.photoUrl){
-        const photoResult:any = await this.uploadPetLocalPhotoToStorage(petData.photoUrl)
-        petData.photoUrl = ""
-        if(photoResult.success)petData.photoUrl = photoResult.data.downloadURL
-      } 
+      let photoResult:any = await this.uploadPetPhoto(petData.photoUrl, petData.name, photoType)
+      petData.photoUrl = null
+      if(photoResult.success)petData.photoUrl = photoResult.data.downloadURL
       try{
         const result = await this.afDatabase.list(`${this.auth.uid}/pets`).push(petData)
         this.helper.hideSpinner();
@@ -124,6 +122,14 @@ export class UserProvider {
        }
 
   }
+  async uploadPetPhoto(photo, name,photoType){
+    
+      if(photoType == 'systemUri'){
+        return await this.uploadPetLocalPhotoToStorage(photo,name)        
+      }else if(photoType == 'base64'){
+        return await this.uploadPetPhotoToStorage(photo,name)
+      } 
+  }
 
   async uploadPhotoToStorage(photo){
     if(!this.auth) return false;
@@ -135,13 +141,13 @@ export class UserProvider {
         return {success:false, error:err};
       }
   }
-  
-  async uploadPetLocalPhotoToStorage(fileUri){
+
+  async uploadPetLocalPhotoToStorage(fileUri, name?){
     const entry = await this.file.resolveLocalFilesystemUrl(fileUri)
     const buffer = await this.helper.resolveFileUriToBuffer(entry) 
     let blob = new Blob([buffer],{type:'image/jpeg'})
     try{
-      const pictures = storage().ref(`images/${this.auth.uid}/pets/${entry.name}`)
+      const pictures = storage().ref(`images/${this.auth.uid}/pets/${name || entry.name}`)
       return{ success:true,data: await pictures.put(blob)}
     }
     catch(err){

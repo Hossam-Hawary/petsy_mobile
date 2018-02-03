@@ -17,6 +17,7 @@ import { HelperProvider } from '../../providers/helper/helper'
 })
 export class PetNewPage {
 	pet:Pet = {} as Pet;
+	photoType:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	 private userProvider:UserProvider, private helper:HelperProvider ) {
   }
@@ -24,23 +25,21 @@ export class PetNewPage {
 	async takePhoto(){
 	 	let photo = await this.helper.takePhoto();
 		if (photo) {
-			this.helper.showSpinner();
-			const result:any = await this.userProvider.uploadPetPhotoToStorage(photo, this.pet.name + Date.now().toString())
-			console.log("data",result)
-			if (result.success) this.pet.photoUrl = result.data.downloadURL;
-			this.helper.hideSpinner();
+			this.pet.photoUrl = photo;
+			this.photoType = 'base64';
 		}
 	}
 	async uploadPhoto(){
 		const result:any = await this.helper.uploadImage()
 		if(result.message) this.helper.createToast(result.message)
 		if(result.success){
+			this.photoType = 'systemUri';
 			this.pet.photoUrl = result.fileUri
 		} 			
 	}
 
 	addPet(){
- 		this.userProvider.addPet(this.pet)
+ 		this.userProvider.addPet(this.pet, this.photoType)
  		this.navCtrl.pop()
 	}
 }

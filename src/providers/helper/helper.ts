@@ -118,6 +118,7 @@ export class HelperProvider {
         quality: 100, //0-100
         targetWidth:700, //px
         targetHeight:700, //px
+        // sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.PNG,
         mediaType: this.camera.MediaType.PICTURE,
