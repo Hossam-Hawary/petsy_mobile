@@ -22,6 +22,8 @@ export class CompleteProfilePage {
 	profileForm:FormGroup
    	errorMessage:string;
    	imgSrc:string;
+    photoType:string;
+    uploading:boolean = false;
    constructor(public navCtrl: NavController, public navParams: NavParams,
   	 public formBuilder: FormBuilder, private userProvider:UserProvider,
      private helper:HelperProvider) {
@@ -32,41 +34,35 @@ export class CompleteProfilePage {
     this.profileForm = this.formBuilder.group({
         name: ['', Validators.compose([UserValidator.fullnameValidator, Validators.required])],
         username: ['', Validators.compose([UserValidator.usernameValidator, Validators.required])],
-        img: [''],
+        photoUrl: [''],
         phoneNumber:['', Validators.compose([Validators.pattern('[0-9]{11}'), Validators.required])]
     });
  }
 	async takePhoto(){
-		let photo = await this.helper.takePhoto();
-		if (photo) {
-			this.helper.showSpinner();
-			const result:any = await this.userProvider.uploadPhotoToStorage(photo)
-			console.log("data",result)
-			if (result.success) this.imgSrc = result.data.downloadURL;
-      this.profileForm.controls.img.setValue(this.imgSrc)
-			this.helper.hideSpinner();
-		}
+    let photo = await this.helper.takePhoto();
+    if (photo) {
+      this.imgSrc = photo
+      this.profileForm.controls.photoUrl.setValue(this.imgSrc)
+      this.photoType = 'base64';
+    }
 	}
 
+   async uploadPhoto(){
+    const result:any = await this.helper.uploadImage()
+    if(result.message) this.helper.createToast(result.message)
+    if(result.success){
+      this.photoType = 'systemUri';
+      this.imgSrc = result.fileUri
+      this.profileForm.controls.photoUrl.setValue(this.imgSrc)
+    }       
+  }
+
  async createProfile(){
- 	this.helper.showSpinner();
-   this.userProvider.afAuth.authState.take(1).subscribe( async (auth)=>{
-    console.log("auth..uid....",auth )
-    if(auth) {
-      try {       
-      await auth.updateProfile({
-        displayName: this.profileForm.value.name,
-        photoURL:this.imgSrc
-      })
-      auth.sendEmailVerification();
-      this.helper.hideSpinner();
-      this.navCtrl.setRoot(HomePage)
-      }catch(err){
-        this.helper.hideSpinner();
-      }
-    }
-  })
- 	this.userProvider.createProfile(this.profileForm.value)
+  this.uploading = true;
+  this.helper.showSpinner()
+ 	const result = await this.userProvider.createProfile(this.profileForm.value, this.photoType)
+  this.navCtrl.setRoot(HomePage)
+  this.helper.hideSpinner()
  }
 
 

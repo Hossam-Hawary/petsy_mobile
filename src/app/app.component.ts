@@ -70,7 +70,7 @@ export class MyApp {
   }
 
   signOut(){
-    this.rootPage = 'LoginPage'
+    this.nav.setRoot('LoginPage')
     this.userProvider.signOut()
   }
   

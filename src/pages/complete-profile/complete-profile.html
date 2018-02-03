@@ -17,10 +17,14 @@
 	<ion-list no-lines>
 	 	<p class="msg">let's setup your profile in a few minutes </p>
 	 	   <img class="avatar" [src]="imgSrc || 'assets/imgs/avatar.png'">
-           <button ion-button class="action-btn" outline round (click)="takePhoto()" color="secondary">
-           	<span *ngIf="!imgSrc">Add Photo</span>
-           	<span *ngIf="imgSrc">Change Photo</span>
-           </button>
+		<ion-buttons class="action-btn" >
+		  <button ion-button  outline round (click)="takePhoto()" color="secondary">
+		  	<span>Take Photo</span>
+		  </button>
+		  <button ion-button outline round end (click)="uploadPhoto()" color="secondary">
+		    <span>Upload Photo</span>
+		  </button>
+		</ion-buttons>
 	    <form [formGroup]="profileForm" novalidate>
 	 
 	        <ion-item>
@@ -45,7 +49,7 @@
             <p *ngIf="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty )" class="error" >Please provaid a valid phone number</p>
 	    </form>
 	    	<p class="error">{{errorMessage}}</p>
-	 	  <button ion-button block round outline color="primary" [disabled]="!profileForm.valid"(click)="createProfile()">Create Account!
+	 	  <button ion-button block round outline color="primary" [disabled]="!profileForm.valid || uploading"(click)="createProfile()">Create Account!
 	 	  </button>
 	</ion-list>
 </ion-content>

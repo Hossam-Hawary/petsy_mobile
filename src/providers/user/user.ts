@@ -72,17 +72,6 @@ export class UserProvider {
       return { success:false, errorMessage: this.getFirebaseErrorMessage(err)}
     }
   }
-   async createProfile(profileData){
-    if(!this.auth) return false;
-    profileData.email = this.auth.email;
-    try{
-        return { success:true, data: await this.afDatabase.object(`${this.auth.uid}/profile`).set(profileData)}
-     }
-     catch(err){
-        return {success:false, error:err};
-     }
-  }
-
 
     loadProfie(){
     if(!this.auth) return false;
@@ -104,10 +93,33 @@ export class UserProvider {
      }
    }
 
+  async createProfile(profileData, photoType?){
+    if(!this.auth) return {success:false};
+    let photoResult:any = await this.uploadProfilePhotoToStorage(profileData.photoUrl, photoType)
+    profileData.email = this.auth.email;
+    profileData.photoUrl = null
+    try{
+      if(photoResult.success){
+        profileData.photoUrl = photoResult.data.downloadURL
+        await this.auth.updateProfile({
+          displayName: profileData.name,
+          photoURL: profileData.photoUrl
+        })
+      }
+      this.auth.sendEmailVerification();
+      const result = await this.afDatabase.object(`${this.auth.uid}/profile`).set(profileData)
+        return { success:true, data:result }
+     }
+     catch(err){
+       console.log("err",err)
+        return {success:false, error:err};
+     }
+  }
+
   async addPet(petData, photoType?){
-      if(!this.auth) return false;
+      if(!this.auth) return {success:false};
       this.helper.showSpinner();
-      let photoResult:any = await this.uploadPetPhoto(petData.photoUrl, petData.name, photoType)
+      let photoResult:any = await this.uploadPetPhotoToStorage(petData.photoUrl, petData.name, photoType)
       petData.photoUrl = null
       if(photoResult.success)petData.photoUrl = photoResult.data.downloadURL
       try{
@@ -122,41 +134,25 @@ export class UserProvider {
        }
 
   }
-  async uploadPetPhoto(photo, name,photoType){
-    
+
+  async uploadPetPhotoToStorage(photo, name,photoType){
+
       if(photoType == 'systemUri'){
-        return await this.uploadPetLocalPhotoToStorage(photo,name)        
+        return await this.uploadPetSystemUriPhoto(photo,name)        
       }else if(photoType == 'base64'){
-        return await this.uploadPetPhotoToStorage(photo,name)
+        return await this.uploadPetPhotoAsBase64(photo,name)
       } 
   }
 
-  async uploadPhotoToStorage(photo){
-    if(!this.auth) return false;
-      try{
-        const pictures = storage().ref(`images/${this.auth.uid}/photos/profile`)
-        return{ success:true,data: await pictures.putString(photo,'data_url')}
-      }
-      catch(err){
-        return {success:false, error:err};
-      }
-  }
-
-  async uploadPetLocalPhotoToStorage(fileUri, name?){
+  async uploadPetSystemUriPhoto(fileUri, name?){
     const entry = await this.file.resolveLocalFilesystemUrl(fileUri)
-    const buffer = await this.helper.resolveFileUriToBuffer(entry) 
-    let blob = new Blob([buffer],{type:'image/jpeg'})
-    try{
-      const pictures = storage().ref(`images/${this.auth.uid}/pets/${name || entry.name}`)
-      return{ success:true,data: await pictures.put(blob)}
-    }
-    catch(err){
-      return {success:false, error:err};
-    }
-
+    return await this.uploadSystemUriFileToStorage(entry,
+      {storagePath:`images/${this.auth.uid}/pets/${name || entry.name}`,
+      type:'image/jpeg'}
+      )
    }
 
-  async uploadPetPhotoToStorage(photo,name){
+  async uploadPetPhotoAsBase64(photo,name){
     if(!this.auth) return false;
       try{
         const pictures = storage().ref(`images/${this.auth.uid}/pets/${name}`)
@@ -167,6 +163,47 @@ export class UserProvider {
       }
   }
 
+  async uploadProfilePhotoToStorage(photo,photoType){
+
+      if(photoType == 'systemUri'){
+        return await this.uploadProfileSystemUriPhoto(photo)        
+      }else if(photoType == 'base64'){
+        return await this.uploadProfilePhotoAsBase64(photo)
+      } 
+  }
+
+
+  async uploadProfilePhotoAsBase64(photo){
+    if(!this.auth) return false;
+      try{
+        const pictures = storage().ref(`images/${this.auth.uid}/photos/profile`)
+        return{ success:true,data: await pictures.putString(photo,'data_url')}
+      }
+      catch(err){
+        return {success:false, error:err};
+      }
+  }
+
+  async uploadProfileSystemUriPhoto(fileUri){
+    const entry = await this.file.resolveLocalFilesystemUrl(fileUri)
+    return await this.uploadSystemUriFileToStorage(entry,
+      {storagePath:`images/${this.auth.uid}/photos/profile`,
+      type:'image/jpeg'}
+      )
+  }
+
+ async uploadSystemUriFileToStorage(entry,options={type:'image/jpeg',storagePath:`images/${this.auth.uid}`}){
+    const buffer = await this.helper.resolveFileUriToBuffer(entry) 
+    let blob = new Blob([buffer],{type:options.type})
+    try{
+      const pictures = storage().ref(options.storagePath)
+      return{ success:true,data: await pictures.put(blob)}
+    }
+    catch(err){
+      return {success:false, error:err};
+    }
+
+   }
   signOut(){
     this.afAuth.auth.signOut().then((data)=>{
       console.log("logout data", data)
