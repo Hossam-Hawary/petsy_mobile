@@ -27,17 +27,15 @@ export class ProfilePage {
   	this.auth = this.userProvider.currentUser();
   	this.getProfile()
   }
-	 getProfile(){
-      // this.userProvider.afAuth.authState.take(1).subscribe(  (auth)=>{
-      //   if(auth) {
-      //     this.userProvider.setAuth(auth)
-      //     this.auth = auth   
-      //   }
-      // })
 
+	 getProfile(){
 		const result:any  =  this.userProvider.loadProfie()
 		if(result.success) this.profile = result.data
 	}
+
+  listMedals(){
+    this.navCtrl.push('MedalsListPage')
+  }
 
 
 }

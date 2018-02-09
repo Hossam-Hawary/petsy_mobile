@@ -19,7 +19,7 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item   tappable *ngFor="let pet of pets | async" (click)="showPet(pet)" >
+    <ion-item tappable *ngFor="let pet of pets | async" (click)="showPet(pet)" >
       <ion-thumbnail item-start>
         <img [src]="(pet)?.photoUrl || 'assets/icon/pet1.png' ">
       </ion-thumbnail>
