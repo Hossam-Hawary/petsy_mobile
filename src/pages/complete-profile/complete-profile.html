@@ -16,40 +16,54 @@
 <ion-content padding>
 	<ion-list no-lines>
 	 	<p class="msg">let's setup your profile in a few minutes </p>
-	 	   <img class="avatar" [src]="imgSrc || 'assets/imgs/avatar.png'">
-		<ion-buttons class="action-btn" >
-		  <button ion-button  outline round (click)="takePhoto()" color="secondary">
-		  	<span>Take Photo</span>
-		  </button>
-		  <button ion-button outline round end (click)="uploadPhoto()" color="secondary">
-		    <span>Upload Photo</span>
-		  </button>
-		</ion-buttons>
+	 	<img class="avatar" [src]="imgSrc || 'assets/imgs/avatar.png'">
+	 	<span class="action-btn">
+			<ion-buttons  >
+			  <button ion-button  outline round (click)="takePhoto()" color="secondary">
+			  	<span>Take Photo</span>
+				  </button>
+				  <button ion-button outline round end (click)="uploadPhoto()" color="secondary">
+				    <span>Upload Photo</span>
+				  </button>
+			</ion-buttons>
+		</span>
 	    <form [formGroup]="profileForm" novalidate>
 	 
 	        <ion-item>
-	            <ion-label color="primary"  floating> Full Name </ion-label>
+	            <ion-label color="primary"  stacked> Full Name </ion-label>
 	            <ion-input formControlName="name" type="text"
 	             [class.invalid]="!profileForm.controls.name.valid && (profileForm.controls.name.dirty)"></ion-input>
 	        </ion-item>
-            <p *ngIf="!profileForm.controls.name.valid && (profileForm.controls.name.dirty )" class="error"> Full names must be 3-60 letter, and can include<br>( wight spaces, - , _, . )
+            <p *ngIf="!profileForm.controls.name.valid && (profileForm.controls.name.dirty )" class="error"> Full names must be 3-50 letter, and can include<br>( wight spaces, - , _, . )
             </p>
 
 	        <ion-item>
-	            <ion-label color="primary" floating> Username </ion-label>
-	            <ion-input formControlName="username"
+	            <ion-label color="primary" stacked> Username </ion-label>
+	            <ion-input formControlName="username" placeholder="@petseee"
 	             [class.invalid]="!profileForm.controls.username.valid && (profileForm.controls.username.dirty)"></ion-input>
 	        </ion-item>
             <p *ngIf="!profileForm.controls.username.valid && (profileForm.controls.username.dirty )" class="error" >usernames must be 3-50 letter,and English letters only.</p>
             <ion-item>
-	            <ion-label color="primary" floating> Phone Number </ion-label>
+	            <ion-label color="primary" stacked> Phone Number </ion-label>
 	            <ion-input formControlName="phoneNumber"
-	             [class.invalid]="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty)"></ion-input>
+	             [class.invalid]="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty)" type="number"></ion-input>
 	        </ion-item>
             <p *ngIf="!profileForm.controls.phoneNumber.valid && (profileForm.controls.phoneNumber.dirty )" class="error" >Please provaid a valid phone number</p>
+            <ion-item>
+			  <ion-label color="primary" stacked >Country</ion-label>
+			  <ion-select formControlName="country" [(ngModel)]="country" (ionChange)="countryChanged()">
+			    <ion-option *ngFor="let country of countries" [value]="country?.name">{{country?.name}}</ion-option>
+			  </ion-select>
+			</ion-item>
+			<ion-item>
+			  <ion-label color="primary" stacked >City</ion-label>
+			  <ion-select formControlName="city">
+			    <ion-option *ngFor="let city of cities[country]" [value]="city">{{city}}</ion-option>
+			  </ion-select>
+			</ion-item>
 	    </form>
 	    	<p class="error">{{errorMessage}}</p>
-	 	  <button ion-button block round outline color="primary" [disabled]="!profileForm.valid || uploading"(click)="createProfile()">Create Account!
+	 	  <button ion-button block round outline color="primary" [disabled]="!profileForm.valid || uploading"(click)="createProfile()">Create An Account!
 	 	  </button>
 	</ion-list>
 </ion-content>

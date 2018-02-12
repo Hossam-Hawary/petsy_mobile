@@ -29,14 +29,6 @@ export class PetNewPage {
 			this.photoType = 'base64';
 		}
 	}
-	async uploadPhoto(){
-		const result:any = await this.helper.uploadImage()
-		if(result.message) this.helper.createToast(result.message)
-		if(result.success){
-			this.photoType = 'systemUri';
-			this.pet.photoUrl = result.fileUri
-		} 			
-	}
 
 	addPet(){
  		this.userProvider.addPet(this.pet, this.photoType)

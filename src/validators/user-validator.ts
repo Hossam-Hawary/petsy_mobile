@@ -14,7 +14,7 @@ export class UserValidator {
     static passwordValidator(control) {
         // {6,100}           - Assert password is between 6 and 100 characters
         // (?=.*[0-9])       - Assert a string has at least one number
-        if (control.value && control.value.match(/^.{6,100}$/)) {
+        if (control.value && control.value.match(/^.{8,100}$/)) {
             return null;
         } else {
             return { 'invalidPassword': true };

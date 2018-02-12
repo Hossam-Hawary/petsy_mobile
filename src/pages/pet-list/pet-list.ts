@@ -26,10 +26,10 @@ export class PetListPage {
   	this.getPets()
   }
 
-	 addNewPet(){
+	addNewPet(){
 	 	this.helper.createModal('PetNewPage').present()
 	 }
-	  getPets(){ 
+	getPets(){ 
 		const result:any  =  this.userProvider.loadUserPets()
 		if(result.success) this.pets = result.data
 	}

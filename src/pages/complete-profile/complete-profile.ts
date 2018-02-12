@@ -24,6 +24,41 @@ export class CompleteProfilePage {
    	imgSrc:string;
     photoType:string;
     uploading:boolean = false;
+    country:any ='Egypt';
+    countries:any[]= [
+    {name:"Egypt", cities:[
+    'Cairo','Alexandria','Giza','Luxor','Mansoura'
+    ]},
+    {name:"Lebanon",cities:[
+    'Beirut','Tripoli','Zahlé','Sidon'
+    ]},
+    {name:"KSA",cities:[
+    'Riyadh','Jeddah','Mecca','Medina'
+    ]},
+    {name:"UAE",cities:[
+    'Dubai','Abu Dhabi','Sharjah','Al Ain'
+    ]},
+    {name:"Jordan",cities:[
+    'Amman','Zarqa','Irbid','Russeifa'
+    ]},
+    ]
+    cities:any= {
+      Egypt:[
+      'Cairo','Alexandria','Giza','Luxor','Mansoura'
+      ],
+      Lebanon:[
+      'Beirut','Tripoli','Zahlé','Sidon'
+      ],
+      KSA:[
+      'Riyadh','Jeddah','Mecca','Medina'
+      ],
+      UAE:[
+      'Dubai','Abu Dhabi','Sharjah','Al Ain'
+      ],
+      Jordan:[
+      'Amman','Zarqa','Irbid','Russeifa'
+      ],
+    }
    constructor(public navCtrl: NavController, public navParams: NavParams,
   	 public formBuilder: FormBuilder, private userProvider:UserProvider,
      private helper:HelperProvider) {
@@ -35,7 +70,9 @@ export class CompleteProfilePage {
         name: ['', Validators.compose([UserValidator.fullnameValidator, Validators.required])],
         username: ['', Validators.compose([UserValidator.usernameValidator, Validators.required])],
         photoUrl: [''],
-        phoneNumber:['', Validators.compose([Validators.pattern('[0-9]{11}'), Validators.required])]
+        phoneNumber:['', Validators.compose([Validators.pattern('[0-9]{11}'), Validators.required])],
+        country:['', Validators.required],
+        city:['', Validators.required]
     });
  }
 	async takePhoto(){
@@ -56,8 +93,12 @@ export class CompleteProfilePage {
       this.profileForm.controls.photoUrl.setValue(this.imgSrc)
     }       
   }
+  countryChanged(){
+   this.profileForm.controls.city.setValue('')
+  }
 
  async createProfile(){
+   console.log(this.profileForm.value)
   this.uploading = true;
   this.helper.showSpinner()
  	const result = await this.userProvider.createProfile(this.profileForm.value, this.photoType)

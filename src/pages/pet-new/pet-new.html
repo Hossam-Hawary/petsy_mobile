@@ -20,28 +20,28 @@
 
 <ion-content >
 <img class="avatar" [src]="(pet)?.photoUrl || 'assets/icon/pet1.png' ">
-<ion-buttons class="action-btn" >
-  <button ion-button  outline round (click)="takePhoto()" color="secondary">
+<ion-buttons  >
+  <button ion-button  outline round class="action-btn"color="secondary" (click)="takePhoto()" >
   	<span>Take Photo</span>
-  </button>
-  <button ion-button outline round end (click)="uploadPhoto()" color="secondary">
-    <span>Upload Photo</span>
   </button>
 </ion-buttons>
 
 <ion-item >
-	<ion-label color="secondary" stacked>Name</ion-label>
-  	<ion-input [(ngModel)]="(pet).name"></ion-input>
+  <ion-label color="secondary" stacked>Name</ion-label>
+    <ion-input [(ngModel)]="(pet).name"></ion-input>
 </ion-item>
 
 <ion-item>
- 	<ion-label color="secondary" stacked > Breed</ion-label>
-  	<ion-input  [(ngModel)]="pet.breed"></ion-input>
+  <ion-label color="secondary" stacked > Breed</ion-label>
+    <ion-input  [(ngModel)]="pet.breed"></ion-input>
 </ion-item>
 
 <ion-item>
-	 <ion-label color="secondary" stacked > Gender</ion-label>
-	 <ion-input  [(ngModel)]="pet.gender"></ion-input>
+  <ion-label color="secondary" stacked >Gender</ion-label>
+  <ion-select [(ngModel)]="pet.gender">
+    <ion-option value="female">Female</ion-option>
+    <ion-option value="male">Male</ion-option>
+  </ion-select>
 </ion-item>
 
 <ion-item>

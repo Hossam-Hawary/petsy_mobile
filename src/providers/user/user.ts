@@ -137,20 +137,10 @@ export class UserProvider {
 
   async uploadPetPhotoToStorage(photo, name,photoType){
 
-      if(photoType == 'systemUri'){
-        return await this.uploadPetSystemUriPhoto(photo,name)        
-      }else if(photoType == 'base64'){
-        return await this.uploadPetPhotoAsBase64(photo,name)
-      } 
+    if(photoType == 'base64'){
+      return await this.uploadPetPhotoAsBase64(photo,name)
+    } 
   }
-
-  async uploadPetSystemUriPhoto(fileUri, name?){
-    const entry = await this.file.resolveLocalFilesystemUrl(fileUri)
-    return await this.uploadSystemUriFileToStorage(entry,
-      {storagePath:`images/${this.auth.uid}/pets/${name || entry.name}`,
-      type:'image/jpeg'}
-      )
-   }
 
   async uploadPetPhotoAsBase64(photo,name){
     if(!this.auth) return false;

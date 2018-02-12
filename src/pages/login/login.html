@@ -22,23 +22,23 @@
 
 	    <form [formGroup]="loginForm" novalidate>
 	        <ion-item>
-	            <ion-label color="primary" floating> Email </ion-label>
+	            <ion-label color="primary" stacked> Email </ion-label>
 	            <ion-input formControlName="email" type="text"
 	             [class.invalid]="!loginForm.controls.email.valid && (loginForm.controls.email.dirty)"></ion-input>
 	        </ion-item>
 	         <p *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty )" class="error">Please enter a valid email.</p>
 
 	        <ion-item>
-	            <ion-label color="primary" floating> Password </ion-label>
+	            <ion-label color="primary" stacked> Password </ion-label>
 	            <ion-input formControlName="password" type="password"
 	             [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty)"></ion-input>
 	        </ion-item>
-            <p *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty )" class="error">Please enter a valid password.</p>
+            <p *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty )" class="error">Passwords must be more than 8 characters</p>
 	    </form>
 	    <p class="error">{{errorMessage}}</p>
 		  <button ion-button block outline round color="primary" [disabled]="!loginForm.valid"(click)="login()">Log In
 	 	 </button> 
 	</ion-list>
-	<h3 class="link" (click)="signUp()" >Create Account</h3>
+	<h3 class="link" (click)="signUp()" >Create An Account</h3>
 
 </ion-content>
