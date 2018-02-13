@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user'
 import { HelperProvider } from '../../providers/helper/helper'
-import { AngularFireObject } from 'angularfire2/database';
+import { AngularFireObject, AngularFireList} from 'angularfire2/database';
+import { Pet } from '../../models/pet'
 
 // import { FirebaseObjectObservable } from 'angularfire2/database'
 
@@ -21,11 +22,14 @@ import { AngularFireObject } from 'angularfire2/database';
 export class ProfilePage {
 	auth:any;
 	profile:AngularFireObject<any>;
+  pets:AngularFireList<Pet[]>
+  activeView:string='pets';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	private helper:HelperProvider, private userProvider:UserProvider) {
   	this.auth = this.userProvider.currentUser();
   	this.getProfile()
+    this.getPets()
   }
 
 	 getProfile(){
@@ -37,5 +41,15 @@ export class ProfilePage {
     this.navCtrl.push('MedalsListPage')
   }
 
+  addNewPet(){
+     this.helper.createModal('PetNewPage').present()
+   }
+  getPets(){ 
+    const result:any  =  this.userProvider.loadUserPets()
+    if(result.success) this.pets = result.data
+  }
+  showPet(pet){
+    this.navCtrl.push('PetDetailsPage',{pet:pet})
+  }
 
 }

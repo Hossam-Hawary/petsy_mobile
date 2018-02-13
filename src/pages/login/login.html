@@ -1,12 +1,12 @@
 
 <ion-header>
 
-  <ion-navbar color="secondary">
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-buttons end >
-	    <button ion-button (click)="skipLogin()" color="primary">
+	    <button ion-button (click)="skipLogin()" color="light">
 	    	Skip
 	    </button>
     </ion-buttons>
@@ -39,6 +39,9 @@
 		  <button ion-button block outline round color="primary" [disabled]="!loginForm.valid"(click)="login()">Log In
 	 	 </button> 
 	</ion-list>
-	<h3 class="link" (click)="signUp()" >Create An Account</h3>
+
+		<button ion-button round class="action-btn" color="secondary" small (click)="signUp()">
+			Create An Account
+	 	</button> 
 
 </ion-content>

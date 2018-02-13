@@ -98,10 +98,10 @@ export class CompleteProfilePage {
   }
 
  async createProfile(){
-   console.log(this.profileForm.value)
+  console.log(this.profileForm.value)
   this.uploading = true;
   this.helper.showSpinner()
- 	const result = await this.userProvider.createProfile(this.profileForm.value, this.photoType)
+ 	await this.userProvider.createProfile(this.profileForm.value, this.photoType)
   this.navCtrl.setRoot(HomePage)
   this.helper.hideSpinner()
  }

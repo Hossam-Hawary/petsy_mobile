@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar color="secondary">
+  <ion-navbar color="primary">
   	<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -25,49 +25,79 @@
 	  	<p  class="hint" >Not Verified</p>
 		<h1 class="name"> {{ auth?.displayName }}</h1>
 	</div>
-	<div class="info-container">
-    		<button ion-button round outline large full color="primary">My Medals</button>
-		    <ion-list>
 
-			  <ion-item>
-			    <ion-avatar item-start>
-			      <img src="assets/imgs/medal3.png">
-			    </ion-avatar>
-			    <h2>Coach</h2>
-			  </ion-item>
+<div class="info-container">
+  <ion-segment  [(ngModel)]="activeView" color="secondary">
+    <ion-segment-button value="pets">
+      Pets
+    </ion-segment-button>
+    <ion-segment-button value="business">
+      Business
+    </ion-segment-button>
+  </ion-segment>
 
-			  <ion-item>
-			    <ion-avatar item-start>
-			      <img src="assets/imgs/vet.png">
-			    </ion-avatar>
-			    <h2>Vet</h2>
-			  </ion-item>
+  <ion-list  *ngIf="activeView == 'pets' ">
+    <ion-item tappable *ngFor="let pet of pets | async" (click)="showPet(pet)" >
+      <ion-thumbnail item-start>
+        <img [src]="(pet)?.photoUrl || 'assets/icon/pet1.png' ">
+      </ion-thumbnail>
+      <h2>{{pet?.name}}</h2>
+      <p>{{pet?.breed}}</p>
+	</ion-item>
+	 
+	<div *ngIf="!(pets | async)?.length">
+	    <img class="no-pet-img" [src]=" 'assets/icon/no_pets2.png' ">
+	    <h1 class="no-pet-msg">You have No Pets!</h1>
+	</div>
+  </ion-list>
 
-			  <ion-item>
-			    <ion-avatar item-start>
-			      <img src="assets/imgs/walking.png">
-			    </ion-avatar>
-			    <h2>Pet Walker</h2>
-			  </ion-item>
+    <ion-list  *ngIf="activeView == 'business' ">
 
-			  <ion-item>
-			    <ion-avatar item-start>
-			      <img src="assets/imgs/setting.png">
-			    </ion-avatar>
-			    <h2>Pet Sitter</h2>
-			  </ion-item>
+	  <ion-item>
+	    <ion-avatar item-start>
+	      <img src="assets/imgs/medal3.png">
+	    </ion-avatar>
+	    <h2>Coach</h2>
+	  </ion-item>
 
-			  <ion-item>
-			    <ion-avatar item-start>
-			      <img src="assets/imgs/kennel.png">
-			    </ion-avatar>
-			    <h2>Kennel</h2>
-			  </ion-item>
+	  <ion-item>
+	    <ion-avatar item-start>
+	      <img src="assets/imgs/vet.png">
+	    </ion-avatar>
+	    <h2>Vet</h2>
+	  </ion-item>
 
-    		  <button ion-button round outline icon-only large color="secondary" (click)="listMedals()">
-    		  		 <ion-icon name="add"></ion-icon>
-    		  </button>
-	    </ion-list>
+	  <ion-item>
+	    <ion-avatar item-start>
+	      <img src="assets/imgs/walking.png">
+	    </ion-avatar>
+	    <h2>Pet Walker</h2>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-avatar item-start>
+	      <img src="assets/imgs/setting.png">
+	    </ion-avatar>
+	    <h2>Pet Sitter</h2>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-avatar item-start>
+	      <img src="assets/imgs/kennel.png">
+	    </ion-avatar>
+	    <h2>Kennel</h2>
+	  </ion-item>
+	  <ion-item>
+	    <ion-avatar item-start>
+	      <img src="assets/imgs/pet-shop.png">
+	    </ion-avatar>
+	    <h2>Pet Shops</h2>
+	  </ion-item>
+
+	  <button ion-button round outline icon-only large color="secondary" (click)="listMedals()">
+	  		 <ion-icon name="add"></ion-icon>
+	  </button>
+		</ion-list>
 	</div>
 
 </ion-content>

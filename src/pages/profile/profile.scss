@@ -20,5 +20,14 @@ page-profile {
       background-color: #fbfbfb;
 
     }
-
+  .no-pet-msg{
+    text-align: center;
+    color: color($colors, secondary);
+  }
+  .no-pet-img{
+    opacity:.5;
+  }
+  .add-btn{
+    font-size:1.5em;
+  }
 }

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="secondary">
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -41,6 +41,7 @@
 	 	  <button ion-button block round outline color="primary" [disabled]="!signupForm.valid"(click)="register()">Create Account!
 	 	  </button>
 	</ion-list>
-		<h3 class="link" (click)="login()" >Already have an account</h3>
-
+		<button ion-button round color="secondary" class="action-btn" small (click)="login()">
+			Already have an account
+	 	</button> 
 </ion-content>

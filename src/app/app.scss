@@ -58,16 +58,23 @@
             display: block;
         }
  
-        ion-label, .select-text, ion-datetime{
+        ion-label, .select-text{
             margin-left: 5px;
         }
  
-        ion-input, ion-select, ion-textarea, ion-datetime {
+        ion-input, ion-textarea {
             background-color: #f2f2f2;
             padding: 5px 10px;
         }
+
+        ion-select, ion-datetime {
+            background-color: #f2f2f2;
+            padding: 15px 10px!important;
+            margin-left: 0px;
+        }
+
         .item-md.item-block .item-inner{
-        border-bottom: none;
+            border-bottom: none;
         }
  
         .invalid {
