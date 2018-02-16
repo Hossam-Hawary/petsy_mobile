@@ -23,16 +23,11 @@
 	    <form [formGroup]="loginForm" novalidate>
 	        <ion-item>
 	            <ion-label color="primary" stacked> Email </ion-label>
-	            <ion-input formControlName="email" type="text"
+	            <ion-input formControlName="email" type="email"
 	             [class.invalid]="!loginForm.controls.email.valid && (loginForm.controls.email.dirty)"></ion-input>
 	        </ion-item>
 	         <p *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty )" class="error">Please enter a valid email.</p>
-
-	        <ion-item>
-	            <ion-label color="primary" stacked> Password </ion-label>
-	            <ion-input formControlName="password" type="password"
-	             [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty)"></ion-input>
-	        </ion-item>
+			<password [form]="loginForm" [control]="loginForm.controls.password"> </password>
             <p *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty )" class="error">Passwords must be more than 8 characters</p>
 	    </form>
 	    <p class="error">{{errorMessage}}</p>

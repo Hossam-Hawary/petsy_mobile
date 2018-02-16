@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {VetHelperProvider} from '../../providers/vet-helper/vet-helper'
 
 @Component({
   selector: 'page-home',
@@ -20,7 +21,7 @@ export class HomePage {
 
 	]
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, vetHelper:VetHelperProvider) {
 
   }
 

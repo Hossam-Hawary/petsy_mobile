@@ -5,6 +5,8 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { HelperProvider } from '../../providers/helper/helper'
 import { storage } from 'firebase'
 import { File } from '@ionic-native/file';
+import * as GeoFire from 'geofire'
+
 
 /*
   Generated class for the UserProvider provider.
