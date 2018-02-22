@@ -1,0 +1,37 @@
+<!--
+  Generated template for the UploadDocsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons start navPop hideWhen="android">     
+  	<button ion-button>
+      <ion-icon name="arrow-back" ></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Upload Docs</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+
+<ion-content >
+	<ion-list>
+	    <ion-list-header class="requirements-header">
+	    	Requirements
+	    </ion-list-header>		
+		<ion-item *ngFor="let item of requirements">		
+			<ion-icon  *ngIf="item.doc" color="primary" name="done-all"></ion-icon>
+			<span [ngClass]="{'active': item.doc}"> {{item.name}} </span>
+			<ion-buttons  end   (click)="uploadDoc(item)" class="upload-btn">
+		      <button ion-button round small  color="secondary" >
+		        <ion-icon name="camera"></ion-icon>
+			   </button>
+		    </ion-buttons>
+		</ion-item>
+	</ion-list>
+	<button ion-button full round outline color="primary" (click)="goNext()" [disabled]="!canGoNext">
+	 Next
+	</button>	
+</ion-content>

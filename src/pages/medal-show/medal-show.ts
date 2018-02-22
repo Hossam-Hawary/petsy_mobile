@@ -21,7 +21,7 @@ export class MedalShowPage {
   }
   
   addMedal(){
-
+  	this.navCtrl.push('UploadDocsPage')
   }
 
 

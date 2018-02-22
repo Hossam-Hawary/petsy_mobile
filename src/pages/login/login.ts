@@ -54,7 +54,7 @@ export class LoginPage {
    this.navCtrl.setRoot('SignUpPage')
  }
  skipLogin(){
-   this.navCtrl.setRoot(HomePage)
+   this.navCtrl.setRoot('HomeTabsPage')
  }
 
 }

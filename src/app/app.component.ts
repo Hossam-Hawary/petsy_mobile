@@ -6,8 +6,8 @@ import { TranslateService} from '@ngx-translate/core';
 import { Network } from '@ionic-native/network';
 import { HelperProvider } from '../providers/helper/helper';
 import { UserProvider } from '../providers/user/user'
+import { AngularFireObject } from 'angularfire2/database';
 
-import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,6 +16,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage';
+  profile:AngularFireObject<any>;
 
   pages: Array<{title: string, component: any, icon:string, class:string}>;
 
@@ -25,7 +26,7 @@ export class MyApp {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage, icon:'home',class:"" },
+      { title: 'Home', component: 'HomeTabsPage', icon:'home',class:"" },
       { title: 'Profile', component: 'ProfilePage',icon:'person',class:"" },
       { title: 'My Pets', component: 'PetListPage',icon:"",class:"fa fa-paw" },
       { title: 'Login', component: 'LoginPage', icon:'log-in',class:"" },
@@ -49,8 +50,9 @@ export class MyApp {
       this.userProvider.afAuth.authState.take(1).subscribe(  (auth)=>{
         console.log("auth..uid....",auth )
         if(auth) {
-          this.rootPage = HomePage;
+          this.rootPage = 'HomeTabsPage';
           this.userProvider.setAuth(auth)
+          this.getProfile()
         }
         this.splashScreen.hide();
       })
@@ -66,12 +68,16 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+     this.nav.setRoot(page.component);
   }
 
   signOut(){
     this.nav.setRoot('LoginPage')
     this.userProvider.signOut()
+  }
+ getProfile(){
+    const result:any  =  this.userProvider.loadProfie()
+    if(result.success) this.profile = result.data
   }
   
 }

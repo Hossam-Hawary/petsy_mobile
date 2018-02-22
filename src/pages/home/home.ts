@@ -9,7 +9,7 @@ import {VetHelperProvider} from '../../providers/vet-helper/vet-helper'
 export class HomePage {
 	cates:any=[
 	{name:'Lost & Found'},
-	{name:'Find Vet'},
+	{name:'Vet Locator' , icon:'vet.png'},
 	{name:'Mating Services'},
 	{name:'Marketplace'},
 	{name:'Adoption'},
@@ -22,6 +22,10 @@ export class HomePage {
 	]
 
   constructor(public navCtrl: NavController, vetHelper:VetHelperProvider) {
+
+  }
+  openCate(cate){
+  	this.navCtrl.push('VetListPage')
 
   }
 

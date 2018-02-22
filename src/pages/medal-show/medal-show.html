@@ -26,12 +26,20 @@
 		    <h1>{{medal?.name}}</h1>
 		</ion-item>
 		    <p>{{medal?.description}} </p>
-		    <p>{{medal?.description}} </p>
-		    <p>{{medal?.description}} </p>
-		    <p>{{medal?.description}} </p>
+		    
+		    <div>
+			    <h2 class="requirements-header">Requirements</h2>
+				<ul>
+				  <li>Medical License</li>
+				  <li>Graduation Certificate</li>
+				  <li>Tax Card</li>
+				  <li>ID(Front & Back)</li>
+				</ul>
+		    </div>
+
 		<ion-buttons  end (click)="addMedal()" >
 	      <button ion-button  round color="primary">
-	      	 I like to be a {{medal?.name}}
+	      	 I agree and like to be a {{medal?.name}}
 	      </button>
 	    </ion-buttons>
 	</ion-list>

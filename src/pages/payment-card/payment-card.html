@@ -1,0 +1,54 @@
+<!--
+  Generated template for the PaymentCardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-buttons start navPop hideWhen="android">     
+  	<button ion-button>
+      <ion-icon name="arrow-back" ></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Payment</ion-title>
+  </ion-toolbar> 
+
+</ion-header>
+
+
+<ion-content >
+
+	<form [formGroup]="cardForm"  novalidate>
+	 	<ion-item>
+		    <ion-label color="primary" stacked> Card Number </ion-label>
+		     <ion-input  formControlName="creditCard" type="number" 
+		             [class.invalid]="!cardForm.controls.creditCard.valid && (cardForm.controls.creditCard.dirty)">
+		    </ion-input>
+		</ion-item>
+		<ion-item>
+		    <ion-label color="primary" stacked> Holder Name </ion-label>
+		     <ion-input  formControlName="name" type="text" 
+		             [class.invalid]="!cardForm.controls.name.valid && (cardForm.controls.name.dirty)">
+		    </ion-input>
+		</ion-item>
+
+		<ion-item>
+			 	<ion-label color="primary" stacked > Expiration Date</ion-label>
+			  	<ion-datetime displayFormat="MM/YY" pickerFormat="MM/YY" formControlName="expirationDate"
+			  	  [class.invalid]="!cardForm.controls.expirationDate.valid && (cardForm.controls.expirationDate.dirty)">
+			  		
+			  	</ion-datetime>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label color="primary" stacked> CVC </ion-label>
+		     <ion-input  formControlName="cvc" type="number" 
+		             [class.invalid]="!cardForm.controls.cvc.valid && (cardForm.controls.cvc.dirty)">
+		    </ion-input>
+		</ion-item>
+	</form>
+	<button ion-button block round outline color="primary" [disabled]="!cardForm.valid"(click)="pay()">Proceed Payment
+	</button>
+</ion-content>

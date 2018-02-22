@@ -2,6 +2,7 @@ page-home {
 .cat-list {
   margin-top: -10px;
   padding: 0;
+  font-family: "PatuaOne-Regular";
   ion-col.full-width {
     max-width: 100%;
     flex: 100%;
@@ -11,11 +12,11 @@ page-home {
     max-height: 31rem;
   }
   ion-col  {
-    background: color($colors, primary);
+    background: white;
     text-align: center;
     border-width: 0px 0px 1px 1px;
     border-style: solid;
-    border-color: rgba(255, 255, 255, 0.26);
+    border-color: color($colors, primary);
     padding: 2rem;
     max-height: 16rem;
     .cat-thumb {
@@ -39,8 +40,8 @@ page-home {
 }
   h2{
   font-size: 1.4rem;
-   text-align: center;
-  color: color($colors, light);
+  text-align: center;
+  color: color($colors, primary);
   margin: .2rem 0 0 0;
   min-height: 2rem;
   line-height: 2rem;

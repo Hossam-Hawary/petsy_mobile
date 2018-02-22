@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { LoadingController, ModalController, Platform, normalizeURL} from 'ionic-angular';
+import { LoadingController, ModalController, Platform,AlertController, normalizeURL} from 'ionic-angular';
 import { Toast, ToastOptions } from '@ionic-native/toast';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
@@ -21,7 +21,7 @@ export class HelperProvider {
   	private modalCtrl:ModalController, private toast:Toast, private socialSharing: SocialSharing,
   	private platform: Platform, private spinnerDialog: SpinnerDialog,private camera:Camera,
      private translateService: TranslateService, private imgPicker:ImagePicker,private zone:NgZone,
-     private file: File) {
+     private file: File, private AlertCtrl:AlertController) {
   }
 
     showSpinner(){
@@ -67,6 +67,20 @@ export class HelperProvider {
       let modal = this.modalCtrl.create(page,data, options );
       return modal;
     }
+
+    createAlert(message,title="",subtitle="",enableBackdropDismiss=true,buttons:any[]){
+      if(!message) return ;
+      return this.AlertCtrl.create({
+        title: title,
+        subTitle: subtitle,
+        message:message,
+        enableBackdropDismiss:enableBackdropDismiss,
+        buttons: buttons || ['Ok']
+    }
+  )
+
+    }
+
     changeConnection(status:boolean){
       this.connectionState = status;
       if(!status) this.displayConnectionError();
@@ -116,8 +130,8 @@ export class HelperProvider {
 
      const options: CameraOptions = {
         quality: 100, //0-100
-        targetWidth:700, //px
-        targetHeight:700, //px
+        targetWidth:800, //px
+        targetHeight:800, //px
         // sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.PNG,

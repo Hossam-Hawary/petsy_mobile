@@ -4,4 +4,12 @@ page-complete-profile {
       		color:color($colors, primary);
       		text-align: center;
 		}
+		.handler{
+			display: inline-block;
+			position: relative;
+		    top: -33px;
+		    left: 15px;
+			margin: 0!important;
+			color: grey;
+		}
 }

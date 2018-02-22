@@ -1,0 +1,29 @@
+<!--
+  Generated template for the VetListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons start navPop hideWhen="android">     
+  	<button ion-button>
+      <ion-icon name="arrow-back" ></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Nearest Vets</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+
+<ion-content >
+	<ion-list>
+	  <ion-item tappable color="light" *ngFor="let vet of vets" (click)="showVet(vet)">
+	    <ion-avatar item-start>
+	      <img [src]="vet?.imgUrl || 'assets/icon/vet.png' ">
+	    </ion-avatar>
+	         <h2 class="name"> {{vet?.name}}</h2>
+      		 <p class="address">{{vet?.address}}</p>
+	  </ion-item>
+	</ion-list>
+</ion-content>

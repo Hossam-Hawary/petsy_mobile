@@ -98,4 +98,5 @@
     <plugin name="com.synconset.imagepicker" spec="~2.1.8">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="pick one to upload" />
     </plugin>
+    <allow-navigation href="http://192.168.1.4:8100" />
 </widget>
