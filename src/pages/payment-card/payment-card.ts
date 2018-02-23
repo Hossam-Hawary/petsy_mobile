@@ -32,7 +32,7 @@ export class PaymentCardPage {
   }
     pay(form) {
     console.log(form);
-    this.helper.createAlert("you have successfully completed the signing up processand you will shortly receive a confirmation link on your email,after we check the submitted documents",
+    this.helper.createAlert("you have successfully completed the signing up process and you will shortly receive a confirmation link on your email,after we check the submitted documents",
       "Done!","",false,[
         {
           text: 'Ok',

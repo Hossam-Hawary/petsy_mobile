@@ -25,8 +25,6 @@ export class SearchPage {
   	console.log(ev)
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
-  }
+
 
 }

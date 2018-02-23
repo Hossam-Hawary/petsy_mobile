@@ -20,7 +20,7 @@
 	<ion-list>
 	    <ion-list-header class="requirements-header">
 	    	Requirements
-	    </ion-list-header>		
+	    </ion-list-header>	
 		<ion-item *ngFor="let item of requirements">		
 			<ion-icon  *ngIf="item.doc" color="primary" name="done-all"></ion-icon>
 			<span [ngClass]="{'active': item.doc}"> {{item.name}} </span>

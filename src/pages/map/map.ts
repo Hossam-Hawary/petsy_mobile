@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MapHelperProvider} from '../../providers/map-helper/map-helper'
+import {VetHelperProvider} from '../../providers/vet-helper/vet-helper'
 import {
  GoogleMaps,
  GoogleMap,
@@ -25,10 +26,13 @@ import {
 })
 export class MapPage {
 	map: GoogleMap;
+	vets:any[];
+	searchInput:string;
+	vetSelected:any;
 	
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	private googleMaps: GoogleMaps, private mapHelper:MapHelperProvider) {
+  	private googleMaps: GoogleMaps, private mapHelper:MapHelperProvider, private vetHelper:VetHelperProvider) {
   }
   loadMap() {
 
@@ -40,32 +44,33 @@ export class MapPage {
         console.log('Map is ready!');
 
         // Now you can use all methods safely.
-        this.addMarkerOnMap({
-              lat: 43.0741904,
-              lng: -89.3809802
-            })
- 
-
+        this.loadVetsOnMap();
       });
   }
 
-	addMarkerOnMap(position){
+	  async loadVetsOnMap(){
+	  	this.vets =  await this.vetHelper.loadVets();
+	  	for (let vet of this.vets){
+	  		this.addVetMarkerOnMap(vet)
+	  	}
+	  }
+
+	addVetMarkerOnMap(vet){
 
 		this.map.addMarker({
-            title: 'Vet',
+            // title: 'Vet',
             // snippet:'lots of textgoes here.lots of textgoes here.lots of textgoes here.lots of textgoes here.lots of textgoes here. ',
             icon: '#02acc9',
             animation: 'DROP',
-            position: position
+            position: vet.location
           })
 
           .then(marker => {
             marker.on(GoogleMapsEvent.MARKER_CLICK)
               .subscribe(() => {
-              	let markerWindow = this.mapHelper.createHtmlInfoWindowContent({name:'Vetseeee Vetseeee', address:'alexandria, alexalexandria, alex', imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'})
-              	markerWindow.on(GoogleMapsEvent.INFO_CLICK).subscribe(() => {console.log("clickkkkkkkkkkkkkkkkk")})
-              	markerWindow.open(marker)
-                
+              	this.vetSelected = vet;
+              	let markerWindow = this.mapHelper.createHtmlInfoWindowContent(vet)
+              	markerWindow.open(marker)                
               });
         });
 	}
@@ -73,5 +78,15 @@ export class MapPage {
   ionViewDidLoad(){
     this.loadMap();
   }
+  hideVetCard(){
+  	this.vetSelected = null;
+  }
+  onSearchInput(ev){
+  	console.log(ev)
+  }
+  onSearchCancel(ev){
+  	console.log(ev)
+  }
+
 
 }

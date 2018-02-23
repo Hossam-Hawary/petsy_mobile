@@ -28,8 +28,9 @@ mapOptions: GoogleMapOptions = {
   }
 
   createHtmlInfoWindowContent(vet){
-  	let content =`<img src="${vet.imgUrl}" style="height:50px;width:70px;margin:2px"><span style="color:#02acc9;font-size:18px">${vet.name}</span>
-<span style="color:grey;margin:2px">${vet.address}</span><img src="assets/imgs/star.png" style="height:30px;width:120px;display:inline;margin:0px">`
+  	let content =`<img (click)="console.log('ffffff") src="${vet.imgUrl}" style="height:50px;width:70px;margin:2px"><span style="color:#02acc9;font-size:18px">${vet.name}</span>
+<span style="color:grey;margin:2px">${vet.address}</span>
+<img src="assets/imgs/star.png" style="height:30px;width:120px;margin:0px">`
   	let htmlInfoWindow = new HtmlInfoWindow
   	htmlInfoWindow.setContent(content,{})
   	return htmlInfoWindow

@@ -19,6 +19,39 @@
 
 
 <ion-content >
-	<div id="map_canvas"></div>
+	<div id="map_canvas">
+		<ion-searchbar
+		  [(ngModel)]="searchInput"
+		  autocomplete='on'
+		  debounce=1000
+		  placeholder="address"
+		  [showCancelButton]="true"
+		  (ionInput)="onSearchInput($event)"
+		  (ionCancel)="onSearchCancel($event)">
+		</ion-searchbar>
+		    <ion-fab right >
+			    <button ion-fab>
+			      <ion-icon name="pin"></ion-icon>
+			    </button>
+		    </ion-fab>
+		  <ion-card *ngIf="vetSelected" class="vet-card">
+		  	<ion-item>		  		
+		    <ion-avatar item-start>
+		      <img [src]="vetSelected?.imgUrl" cals>
+		    </ion-avatar>
+		    <ion-fab right top (click)="hideVetCard()">
+			    <button  small clear>
+			      <ion-icon name="close"></ion-icon>
+			</button>
+		    </ion-fab>
+		    <h2 >{{vetSelected?.name}}</h2>
+		    <p>{{vetSelected?.address}}</p>
+		    <img src="assets/imgs/star.png" style="height:30px;width:100px;display:inline;">
+			    <button ion-button clear large>
+			      show Profile
+			    </button>
+		  	</ion-item>
+		  </ion-card>
+	</div>
 
 </ion-content>
