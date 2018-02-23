@@ -24,6 +24,7 @@
     "@ionic-native/core": "4.3.2",
     "@ionic-native/email-composer": "^4.3.3",
     "@ionic-native/file": "^4.5.3",
+    "@ionic-native/google-maps": "^4.5.3",
     "@ionic-native/image-picker": "^4.5.3",
     "@ionic-native/network": "^4.3.3",
     "@ionic-native/social-sharing": "^4.3.3",
@@ -41,6 +42,7 @@
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-email-composer": "^0.8.12",
     "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-googlemaps": "^2.2.5",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-native-spinner": "^1.1.3",
     "cordova-plugin-network-information": "^1.3.4",
@@ -82,7 +84,13 @@
       "com.synconset.imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "pick one to upload"
       },
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyBX6A11CHW23ZOVxnuBiJXFoKID9Qx8rho",
+        "API_KEY_FOR_IOS": "AIzaSyACR8g6TqMjcA_NohY3JQuB36hY7HLbAkA",
+        "PLAY_SERVICES_VERSION": "11.8.0",
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.0"
+      }
     },
     "platforms": [
       "android"

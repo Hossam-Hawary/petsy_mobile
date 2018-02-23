@@ -28,7 +28,9 @@ import { UserProvider } from '../providers/user/user';
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { File } from '@ionic-native/file';
+import {GoogleMaps} from '@ionic-native/google-maps';
 import { VetHelperProvider } from '../providers/vet-helper/vet-helper';
+import { MapHelperProvider } from '../providers/map-helper/map-helper';
 
 
 
@@ -80,9 +82,10 @@ const pages :any[]=[
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HelperProvider, ApiProvider, Network, Toast, SocialSharing, SpinnerDialog,
     EmailComposer,Camera,ImagePicker,File,
-    UserProvider,
+    UserProvider,GoogleMaps,
     VetHelperProvider,
-    VetHelperProvider
+    VetHelperProvider,
+    MapHelperProvider
 
   ]
 })

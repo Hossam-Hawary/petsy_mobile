@@ -25,7 +25,7 @@ export class HomePage {
 
   }
   openCate(cate){
-  	this.navCtrl.push('VetListPage')
+  	this.navCtrl.push('MapPage')
 
   }
 

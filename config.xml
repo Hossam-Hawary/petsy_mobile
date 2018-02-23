@@ -91,7 +91,6 @@
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.10" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
-    <engine name="android" spec="^6.2.3" />
     <allow-navigation href="http://192.168.1.3:8100" />
     <allow-navigation href="http://192.168.1.2:8100" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
@@ -99,4 +98,11 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="pick one to upload" />
     </plugin>
     <allow-navigation href="http://192.168.1.4:8100" />
+    <plugin name="cordova-plugin-googlemaps" spec="^2.2.5">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBX6A11CHW23ZOVxnuBiJXFoKID9Qx8rho" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyACR8g6TqMjcA_NohY3JQuB36hY7HLbAkA" />
+        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
+    </plugin>
+    <engine name="android" spec="^6.2.3" />
 </widget>
