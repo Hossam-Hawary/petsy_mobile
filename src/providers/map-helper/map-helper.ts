@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {
  GoogleMapOptions,
-HtmlInfoWindow
+HtmlInfoWindow,
+Geocoder,
+GeocoderRequest,
+CameraPosition
 } from '@ionic-native/google-maps';
 /*
   Generated class for the MapHelperProvider provider.
@@ -12,16 +15,28 @@ HtmlInfoWindow
 */
 @Injectable()
 export class MapHelperProvider {
-mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };
+	defaultCameraPosition:CameraPosition ={
+		zoom:17,
+		tilt: 30,
+		duration:1000,
+		target: {
+          lat: 31.2000924,
+          lng: 29.9187387
+        }
+
+	}
+
+	mapOptions: GoogleMapOptions = {
+	      camera:{         
+          zoom:12,
+          tilt: 30,
+          duration:1000,
+          target: {
+                lat: 31.2000924,
+                lng: 29.9187387
+          }
+        }
+	};
 
   constructor() {
     console.log('Hello MapHelperProvider Provider');
@@ -34,6 +49,12 @@ mapOptions: GoogleMapOptions = {
   	let htmlInfoWindow = new HtmlInfoWindow
   	htmlInfoWindow.setContent(content,{})
   	return htmlInfoWindow
+  }
+
+  async geoCode(searchKey){
+  	let request: GeocoderRequest= {}
+  	request.address = searchKey
+  	return await Geocoder.geocode(request)
   }
 
 }

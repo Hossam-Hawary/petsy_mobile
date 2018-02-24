@@ -16,11 +16,11 @@ export class VetHelperProvider {
 
 
 vets:any[] = [
-  {name:'Vetseeee', address:'15-Cairo-AlexCairo-Alex,St.',location:{lat:43.0741314,lng:-89.3809802}, imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
-  {name:'Vetseeee', address:'16-Cairo-AlexCairo-Alex,St.',location:{lat:43.0743824,lng:-89.3805212},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
-  {name:'Vetseeee', address:'17-Cairo-AlexCairo-Alex,St.',location:{lat:43.0746934,lng:-89.3809322},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
-  {name:'Vetseeee', address:'18-Cairo-AleCairo-Alexx,St.',location:{lat:43.0741644,lng:-89.3803632},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
-  {name:'Vetseeee', address:'19-Cairo-AlexCairo-Alex,St.',location:{lat:43.0749754,lng:-89.3807442},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
+  {name:'Vetseeee', address:'15-Cairo-AlexCairo-Alex,St.',location:{lat:31.245533599999996,lng:29.9832}, imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
+  {name:'Vetseeee', address:'16-Cairo-AlexCairo-Alex,St.',location:{lat:31.221334799999994,lng:29.937915099999998},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
+  {name:'Vetseeee', address:'17-Cairo-AlexCairo-Alex,St.',location:{lat:31.209912999999997,lng:29.9435228},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
+  {name:'Vetseeee', address:'18-Cairo-AleCairo-Alexx,St.',location:{lat:31.2129259,lng:29.9832},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
+  {name:'Vetseeee', address:'19-Cairo-AlexCairo-Alex,St.',location:{lat:31.2029259,lng:29.903083199999994},imgUrl:'https://petstockimages.blob.core.windows.net/petstockvet/petstock-vet-dog.png'},
 ]
   constructor(
     private afDatabase:AngularFireDatabase) {

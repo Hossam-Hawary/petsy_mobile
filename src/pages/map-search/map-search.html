@@ -1,0 +1,45 @@
+<!--
+  Generated template for the MapSearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-buttons start (click)="cloas()">     
+  	<button ion-button>
+      <ion-icon name="close" ></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Search By Address</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+
+<ion-content padding>
+	<ion-searchbar #searchBar
+	  [(ngModel)]="searchInput"
+	  autocomplete='on'
+	  debounce=500
+	  placeholder="Smoha,Alexandria,Egypt"
+	  [showCancelButton]="true"
+	  (ionInput)="onSearchInput($event)"
+	  (ionCancel)="onSearchCancel($event)">
+	</ion-searchbar>
+	<ion-list>
+		<div *ngIf="loadingResults" class="spinner"><ion-spinner></ion-spinner></div>
+		
+		<ion-item tappable *ngFor="let address of searchResult" (click)="goToLocation(address)">
+			<h2>
+				<ion-icon name="pin"></ion-icon>
+				<span *ngIf="address?.thoroughfare">{{address?.thoroughfare}},</span><span>{{address?.subAdminArea}}</span>
+			</h2>
+	    	<p>{{address?.locality}}, {{address?.country}}</p>
+		</ion-item>
+	</ion-list>
+	<div *ngIf="searchInput && !searchResult.length && !loadingResults" class="zero-state">
+			No Results
+		    <ion-icon name="alert"></ion-icon>			 
+	</div>
+</ion-content>

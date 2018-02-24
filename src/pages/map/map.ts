@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MapHelperProvider} from '../../providers/map-helper/map-helper'
 import {VetHelperProvider} from '../../providers/vet-helper/vet-helper'
+import {HelperProvider} from '../../providers/helper/helper'
+
 import {
  GoogleMaps,
  GoogleMap,
  GoogleMapsEvent,
- GoogleMapOptions,
- CameraPosition,
- MarkerOptions,
- HtmlInfoWindow,
- Marker
+ MarkerOptions
 } from '@ionic-native/google-maps';
 /**
  * Generated class for the MapPage page.
@@ -27,12 +25,13 @@ import {
 export class MapPage {
 	map: GoogleMap;
 	vets:any[];
-	searchInput:string;
 	vetSelected:any;
+
 	
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	private googleMaps: GoogleMaps, private mapHelper:MapHelperProvider, private vetHelper:VetHelperProvider) {
+  	private googleMaps: GoogleMaps, private mapHelper:MapHelperProvider, private vetHelper:VetHelperProvider,
+  	private helper:HelperProvider) {
   }
   loadMap() {
 
@@ -81,12 +80,16 @@ export class MapPage {
   hideVetCard(){
   	this.vetSelected = null;
   }
-  onSearchInput(ev){
-  	console.log(ev)
+  openSearch(){
+  	let modal = this.helper.createModal('MapSearchPage')
+  	modal.onDidDismiss((data)=>{
+  		console.log(data)
+  		if(!data) return;
+  		let cameraPosition = this.mapHelper.defaultCameraPosition;
+  		cameraPosition.target = data.position
+  		this.map.animateCamera(cameraPosition)
+  	})
+  	modal.present();
   }
-  onSearchCancel(ev){
-  	console.log(ev)
-  }
-
 
 }
