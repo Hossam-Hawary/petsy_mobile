@@ -13,17 +13,24 @@
 
 <ion-content>
 	<div class="info-container">
-		<button ion-button round outline color="primary" end>@{{ (profile | async)?.username }}</button>
-		<img  class="avatar" [src]="(auth)?.photoURL || 'assets/imgs/avatar.png' ">
-	  	<p>
-	  		<ion-icon name="mail" color="primary"></ion-icon> {{ auth?.email }}
-	  	</p>
-	  	<p *ngIf="!auth?.emailVerified" class="hint" >Not Verified</p>
-	  	<p>
-	  		<ion-icon color="primary" name="phone-portrait"></ion-icon> {{ (profile | async)?.phoneNumber  }}
-	  	</p>
-	  	<p  class="hint" >Not Verified</p>
-		<h1 class="name"> {{ auth?.displayName }}</h1>
+		<img  class="avatar provile-img" [src]="(auth)?.photoURL || 'assets/imgs/avatar.png' ">
+		<div class="info">
+			<p class="name"> {{ auth?.displayName }}</p>
+			<p class="handler"> @{{ (profile | async)?.username }}</p>
+		
+		</div>
+		<div class="bio">write your bio...</div>
+		<div class="contact-info">	
+		  	<p>
+		  		<ion-icon name="mail" color="primary"></ion-icon>
+		  		 {{ auth?.email }}
+		  	</p>
+		  	<p *ngIf="!auth?.emailVerified" class="hint" >Not Verified</p>
+		  	<p>
+		  		<ion-icon color="primary" name="phone-portrait"></ion-icon> {{ (profile | async)?.phoneNumber  }}
+		  	</p>
+		  	<p  class="hint" >Not Verified</p>
+		</div>
 	</div>
 
 <div class="info-container">

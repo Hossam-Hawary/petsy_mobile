@@ -1,15 +1,45 @@
 page-profile {
 
+    .provile-img{
+      margin-left:0px;
+      display: inline; 
+      float:left;
+    }
     .name {
-      font-size: 28px;
-      text-align: center;
-      height: 40px;
-      color: color($colors, primary);
+      font-size: 23px;
+      margin:1px ;
+    }
+
+    .handler{
+      color:color($colors, primary);
+      position: relative;
+      font-size: 17px;
+      margin:1px;
+    }
+    .info{
+      float:left;
+      margin-left:5px;
+    }
+    .bio{
+      position: relative;
+      height:60px;
+      width:230px;
+      background-color: #eeeeee;
+      color:#bbbbbb;
+      border-radius:20px;
+      padding:15px;
+      margin-left:5px;
+      margin-top:5px;
+      display: inline-block;
     }
     .hint{
       font-size: .8em;
       color:#888888;
       text-align: center;
+      margin:0;
+    }
+    .contact-info{
+      clear:both;
     }
     .info-container{
       padding:15px;

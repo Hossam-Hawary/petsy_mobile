@@ -31,6 +31,7 @@ export class MapHelperProvider {
           zoom:12,
           tilt: 30,
           duration:1000,
+          bearing:20,
           target: {
                 lat: 31.2000924,
                 lng: 29.9187387
