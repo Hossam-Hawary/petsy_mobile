@@ -68,7 +68,7 @@ export class HelperProvider {
       return modal;
     }
 
-    createAlert(message,title="",subtitle="",enableBackdropDismiss=true,buttons:any[]){
+    createAlert(message,title="",subtitle="",enableBackdropDismiss=true,buttons?:any[]){
       if(!message) return ;
       return this.AlertCtrl.create({
         title: title,

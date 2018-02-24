@@ -15,7 +15,7 @@ CameraPosition
 */
 @Injectable()
 export class MapHelperProvider {
-	defaultCameraPosition:CameraPosition ={
+	defaultCameraPosition:CameraPosition<any> ={
 		zoom:17,
 		tilt: 30,
 		duration:1000,
@@ -53,7 +53,7 @@ export class MapHelperProvider {
 
   async geoCode(searchKey){
   	let request: GeocoderRequest= {}
-  	request.address = searchKey
+    request.address = searchKey
   	return await Geocoder.geocode(request)
   }
 

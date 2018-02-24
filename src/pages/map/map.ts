@@ -8,7 +8,7 @@ import {
  GoogleMaps,
  GoogleMap,
  GoogleMapsEvent,
- MarkerOptions
+ Circle
 } from '@ionic-native/google-maps';
 /**
  * Generated class for the MapPage page.
@@ -26,6 +26,7 @@ export class MapPage {
 	map: GoogleMap;
 	vets:any[];
 	vetSelected:any;
+  myLocationCircle:Circle;
 
 	
 
@@ -74,22 +75,47 @@ export class MapPage {
         });
 	}
 
+  hideVetCard(){
+    this.vetSelected = null;
+  }
+  openSearch(){
+    let modal = this.helper.createModal('MapSearchPage')
+    modal.onDidDismiss((data)=>{
+      if(!data) return;
+      let cameraPosition = this.mapHelper.defaultCameraPosition;
+      cameraPosition.target = data.position
+      this.map.animateCamera(cameraPosition)
+    })
+    modal.present();
+  }
+
+  async createOrUpdateMylocation(){
+    let myLocation = await this.map.getMyLocation();
+    if(this.myLocationCircle){this.myLocationCircle.setCenter(myLocation.latLng);return;}
+
+     this.myLocationCircle = await this.map.addCircle({
+      center:myLocation.latLng,
+      radius:20,
+      strokeColor:'#02acc9',
+      fillColor:'#02acc9',
+      strokeWidth:2,
+    })
+  }
+
+   async getMyLocation(){
+     try{
+      await this.createOrUpdateMylocation();
+      let cameraPosition = this.mapHelper.defaultCameraPosition;
+      cameraPosition.target = this.myLocationCircle.getCenter();
+      this.map.animateCamera(cameraPosition)
+    // this.map.animateCameraZoomIn()
+     }catch(err){
+       console.log("err",err)
+       this.helper.createAlert("We couldn't get your location, make sure your device's location is turned on then try again","Enable Location").present()
+     }
+  }
+
   ionViewDidLoad(){
     this.loadMap();
   }
-  hideVetCard(){
-  	this.vetSelected = null;
-  }
-  openSearch(){
-  	let modal = this.helper.createModal('MapSearchPage')
-  	modal.onDidDismiss((data)=>{
-  		console.log(data)
-  		if(!data) return;
-  		let cameraPosition = this.mapHelper.defaultCameraPosition;
-  		cameraPosition.target = data.position
-  		this.map.animateCamera(cameraPosition)
-  	})
-  	modal.present();
-  }
-
 }
