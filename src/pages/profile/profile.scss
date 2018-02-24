@@ -6,8 +6,8 @@ page-profile {
       float:left;
     }
     .name {
-      font-size: 23px;
-      margin:1px ;
+      font-size: 18px;
+      margin:0px ;
     }
 
     .handler{
@@ -19,11 +19,12 @@ page-profile {
     .info{
       float:left;
       margin-left:5px;
+      width: 55%;
     }
     .bio{
       position: relative;
       height:60px;
-      width:230px;
+      width:55%;
       background-color: #eeeeee;
       color:#bbbbbb;
       border-radius:20px;
