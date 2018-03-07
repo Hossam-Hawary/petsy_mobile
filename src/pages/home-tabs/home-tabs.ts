@@ -18,7 +18,7 @@ export class HomeTabsPage {
   tabs:any = {
     home:HomePage,
     profile:'ProfilePage',
-    search:'SearchPage'
+    more:'MorePage'
   }
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -31,16 +31,17 @@
 		  	<ion-item>		  		
 		    <ion-avatar item-start>
 		      <img [src]="vetSelected?.imgUrl" cals>
+		    <p class="price">{{vetSelected?.price}} LE.</p>
 		    </ion-avatar>
-		    <ion-fab right top (click)="hideVetCard()">
-			    <button  small clear>
+		    <ion-fab right top mini (click)="hideVetCard()">
+			    <button  ion-fab mini clear>
 			      <ion-icon name="close"></ion-icon>
 				</button>
 		    </ion-fab>
 		    <h2 >{{vetSelected?.name}}</h2>
 		    <p>{{vetSelected?.address}}</p>
-		    <img src="assets/imgs/star.png" style="height:30px;width:100px;display:inline;">
-			    <button ion-button clear large>
+		    <img src="assets/imgs/star.png" style="height:30px;width:100px;display:inline;" >
+			    <button ion-button clear  class="show_profile_btn" (click)="showVet()">
 			      show Profile
 			    </button>
 		  	</ion-item>

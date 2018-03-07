@@ -1,0 +1,45 @@
+page-vet-profile {
+
+	.rate{
+		height:80px;
+		width:220px;
+		display:block;
+		margin-right:auto;
+		margin-left:auto;
+	}
+	.call{
+		width:46%;
+		margin-bottom:20px;
+	}
+ 	.provile-img{
+      margin:10px;
+      display: inline; 
+      float:left;
+    }
+    .name {
+      font-size: 18px;
+      margin:0px ;
+    }
+
+    .handler{
+      color:color($colors, primary);
+      position: relative;
+      font-size: 17px;
+      margin:1px;
+    }
+    .info{
+      float:left;
+      margin:10px;
+      width: 55%;
+    }
+    .address{
+      clear:both;
+      margin:10px;
+    }
+    .verified{
+	    text-align:center;
+	    color:color($colors, secondary);
+	    margin:0;
+
+    }
+}

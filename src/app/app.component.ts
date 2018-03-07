@@ -6,7 +6,6 @@ import { TranslateService} from '@ngx-translate/core';
 import { Network } from '@ionic-native/network';
 import { HelperProvider } from '../providers/helper/helper';
 import { UserProvider } from '../providers/user/user'
-import { AngularFireObject } from 'angularfire2/database';
 
 
 @Component({
@@ -16,23 +15,12 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage';
-  profile:AngularFireObject<any>;
-
-  pages: Array<{title: string, component: any, icon:string, class:string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar
     , public splashScreen: SplashScreen, private translate: TranslateService,
     private network:Network, private helper:HelperProvider, private userProvider:UserProvider) {
     this.initializeApp();
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: 'HomeTabsPage', icon:'home',class:"" },
-      { title: 'Profile', component: 'ProfilePage',icon:'person',class:"" },
-      { title: 'My Pets', component: 'PetListPage',icon:"",class:"fa fa-paw" },
-      { title: 'Login', component: 'LoginPage', icon:'log-in',class:"" },
-      { title: 'Sign Up', component: 'SignUpPage', icon:'person-add',class:"" }
-    ];
-
   }
 
   initializeApp() {
@@ -52,7 +40,6 @@ export class MyApp {
         if(auth) {
           this.rootPage = 'HomeTabsPage';
           this.userProvider.setAuth(auth)
-          this.getProfile()
         }
         this.splashScreen.hide();
       })
@@ -63,21 +50,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(false)
     });
-  }
-
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-     this.nav.setRoot(page.component);
-  }
-
-  signOut(){
-    this.nav.setRoot('LoginPage')
-    this.userProvider.signOut()
-  }
- getProfile(){
-    const result:any  =  this.userProvider.loadProfie()
-    if(result.success) this.profile = result.data
   }
   
 }

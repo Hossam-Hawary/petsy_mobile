@@ -1,10 +1,7 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController,Searchbar } from 'ionic-angular';
 import {MapHelperProvider} from '../../providers/map-helper/map-helper'
-import {
- GoogleMaps,
- GoogleMap,
-} from '@ionic-native/google-maps';
+
 /**
  * Generated class for the MapSearchPage page.
  *

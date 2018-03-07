@@ -115,6 +115,10 @@ export class MapPage {
      }
   }
 
+  showVet(vet){
+    this.navCtrl.push('VetProfilePage',{vet:this.vetSelected})
+  }
+
   ionViewDidLoad(){
     this.loadMap();
   }

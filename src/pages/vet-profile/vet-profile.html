@@ -1,0 +1,42 @@
+<!--
+  Generated template for the VetProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons start navPop hideWhen="android">     
+  	<button ion-button>
+      <ion-icon name="arrow-back" ></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Vet's Profile</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+
+<ion-content >
+	<img  class="avatar provile-img" [src]="vet?.imgUrl || 'assets/imgs/avatar.png' ">
+		<div class="info">
+			<p class="name"> {{vet?.name}}</p>
+			<p class="handler"> @{{ vet?.name }}</p>
+		</div>
+
+		<div class="address">
+			  	<button class="call" ion-button  clear (click)="callVet()" >
+			      <ion-icon name="call" ></ion-icon>
+			    </button>
+			   	<button ion-button  class="call"  clear  (click)="mailVet()">
+			      <ion-icon name="mail" ></ion-icon>
+			    </button>	
+			<ion-item color="light">
+				<img class="rate" src="assets/imgs/stars.png" >
+				<p class="verified"><ion-icon color="secondary" name="checkmark-circle" ></ion-icon> Verified Vet  </p>
+				<p><ion-icon name="cash"></ion-icon> {{vet?.price}} LE.</p>
+				<p><ion-icon name="pin"></ion-icon> {{vet?.address}}</p>
+
+			</ion-item>
+		</div>
+</ion-content>

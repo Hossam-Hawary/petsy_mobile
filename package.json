@@ -20,9 +20,10 @@
     "@angular/http": "4.4.4",
     "@angular/platform-browser": "4.4.4",
     "@angular/platform-browser-dynamic": "4.4.4",
+    "@ionic-native/call-number": "^4.5.3",
     "@ionic-native/camera": "^4.5.2",
     "@ionic-native/core": "4.3.2",
-    "@ionic-native/email-composer": "^4.3.3",
+    "@ionic-native/email-composer": "^4.5.3",
     "@ionic-native/file": "^4.5.3",
     "@ionic-native/google-maps": "^4.5.3",
     "@ionic-native/image-picker": "^4.5.3",
@@ -37,6 +38,7 @@
     "@ngx-translate/core": "^8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
     "angularfire2": "^5.0.0-rc.3",
+    "call-number": "^1.0.1",
     "cordova-android": "^6.2.3",
     "cordova-plugin-camera": "^4.0.1",
     "cordova-plugin-device": "^1.1.7",
@@ -90,7 +92,8 @@
         "API_KEY_FOR_IOS": "AIzaSyACR8g6TqMjcA_NohY3JQuB36hY7HLbAkA",
         "PLAY_SERVICES_VERSION": "11.8.0",
         "ANDROID_SUPPORT_V4_VERSION": "24.1.0"
-      }
+      },
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "android"

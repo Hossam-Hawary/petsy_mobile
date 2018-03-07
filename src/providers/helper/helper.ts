@@ -8,6 +8,8 @@ import { Pro } from '@ionic/pro';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { File } from '@ionic-native/file';
+import { CallNumber } from '@ionic-native/call-number';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 
 
@@ -21,7 +23,8 @@ export class HelperProvider {
   	private modalCtrl:ModalController, private toast:Toast, private socialSharing: SocialSharing,
   	private platform: Platform, private spinnerDialog: SpinnerDialog,private camera:Camera,
      private translateService: TranslateService, private imgPicker:ImagePicker,private zone:NgZone,
-     private file: File, private AlertCtrl:AlertController) {
+     private file: File, private AlertCtrl:AlertController, private callNumber: CallNumber,
+      private emailComposer: EmailComposer) {
   }
 
     showSpinner(){
@@ -130,8 +133,8 @@ export class HelperProvider {
 
      const options: CameraOptions = {
         quality: 100, //0-100
-        targetWidth:800, //px
-        targetHeight:800, //px
+        targetWidth:1024, //px
+        targetHeight:2048, //px
         // sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.PNG,
@@ -171,5 +174,20 @@ export class HelperProvider {
     dirPath = dirPathSeg.join("/")
     return await this.file.readAsArrayBuffer(dirPath,entry.name)
   }
+
+  async call(number){
+    await this.callNumber.callNumber(number, true)
+  }
+
+  async sendEmail(emailAdress){
+    let email = {
+    to: emailAdress,
+    subject: 'Petseee Help',
+    isHtml: true
+  };
+
+  // Send a text message using default options
+  this.emailComposer.open(email);
+    }
 
 }

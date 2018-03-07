@@ -22,10 +22,10 @@
 	    	Requirements
 	    </ion-list-header>	
 		<ion-item *ngFor="let item of requirements">		
-			<ion-icon  *ngIf="item.doc" color="primary" name="done-all"></ion-icon>
 			<span [ngClass]="{'active': item.doc}"> {{item.name}} </span>
-			<ion-buttons  end   (click)="uploadDoc(item)" class="upload-btn">
-		      <button ion-button round small  color="secondary" >
+			<ion-icon  *ngIf="item.doc" color="primary" name="done-all"></ion-icon>
+			<ion-buttons end (click)="uploadDoc(item)" >
+		      <button ion-button clear color="secondary" >
 		        <ion-icon name="camera"></ion-icon>
 			   </button>
 		    </ion-buttons>
