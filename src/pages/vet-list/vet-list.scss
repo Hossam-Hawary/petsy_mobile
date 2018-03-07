@@ -1,10 +1,5 @@
 page-vet-list {
-    .address{
-      font-size: .8em;
-      color:#888888;
-    }
-     .name{
-      font-size: 1.2em;
-      color: color($colors, primary);;
-    }
+    .price{
+		color: color($colors, secondary)!important;
+	}
 }

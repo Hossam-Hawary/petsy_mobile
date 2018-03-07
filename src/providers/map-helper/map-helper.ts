@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {
  GoogleMapOptions,
-HtmlInfoWindow,
 Geocoder,
 GeocoderRequest,
 CameraPosition
@@ -40,17 +39,8 @@ export class MapHelperProvider {
 	};
 
   constructor() {
-    console.log('Hello MapHelperProvider Provider');
   }
 
-  createHtmlInfoWindowContent(vet){
-  	let content =`<img (click)="console.log('ffffff") src="${vet.imgUrl}" style="height:50px;width:70px;margin:2px"><span style="color:#02acc9;font-size:18px">${vet.name}</span>
-<span style="color:grey;margin:2px">${vet.address}</span>
-<img src="assets/imgs/star.png" style="height:30px;width:120px;margin:0px">`
-  	let htmlInfoWindow = new HtmlInfoWindow
-  	htmlInfoWindow.setContent(content,{})
-  	return htmlInfoWindow
-  }
 
   async geoCode(searchKey){
   	let request: GeocoderRequest= {}

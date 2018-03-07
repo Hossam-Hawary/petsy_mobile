@@ -11,19 +11,26 @@
       <ion-icon name="arrow-back" ></ion-icon>
     </button>
     </ion-buttons>
-    <ion-title>Nearest Vets</ion-title>
+    <ion-title>Vets</ion-title>
   </ion-toolbar> 
 </ion-header>
 
 
 <ion-content >
 	<ion-list>
-	  <ion-item tappable color="light" *ngFor="let vet of vets" (click)="showVet(vet)">
-	    <ion-avatar item-start>
-	      <img [src]="vet?.imgUrl || 'assets/icon/vet.png' ">
-	    </ion-avatar>
-	         <h2 class="name"> {{vet?.name}}</h2>
-      		 <p class="address">{{vet?.address}}</p>
-	  </ion-item>
+      <ion-card *ngFor="let vet of vets"  (click)="showVet(vet)" class="vet-card">
+        <ion-item>          
+        <ion-avatar item-start>
+          <img [src]="vet?.imgUrl" cals>
+        <p class="price">{{vet?.price}} LE.</p>
+        </ion-avatar>
+        <h2 >{{vet?.name}}</h2>
+        <p>{{vet?.address}}</p>
+        <img src="assets/imgs/star.png" style="height:30px;width:100px;display:inline;" >
+          <button ion-button clear  item-end class="show_profile_btn">
+            show Profile
+          </button>
+        </ion-item>
+      </ion-card>
 	</ion-list>
 </ion-content>

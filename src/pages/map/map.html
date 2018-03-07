@@ -23,8 +23,9 @@
 		    <ion-fab right top mini>
 			    <button ion-fab color="secondary"><ion-icon name="funnel"></ion-icon></button>
 			    <ion-fab-list>
-			    	<button ion-fab color="primary" (click)="getMyLocation()"><ion-icon name="pin"></ion-icon></button>
 			    	<button ion-fab (click)="openSearch()" color="primary"><ion-icon name="search"></ion-icon></button>
+			    	<button ion-fab color="primary" (click)="getMyLocation()"><ion-icon name="pin"></ion-icon></button>
+			    	<button ion-fab (click)="listVets()" color="primary"><ion-icon name="list"></ion-icon></button>
 			    </ion-fab-list>
 		    </ion-fab>
 		  <ion-card *ngIf="vetSelected" class="vet-card">
@@ -33,7 +34,7 @@
 		      <img [src]="vetSelected?.imgUrl" cals>
 		    <p class="price">{{vetSelected?.price}} LE.</p>
 		    </ion-avatar>
-		    <ion-fab right top mini (click)="hideVetCard()">
+		    <ion-fab top right  (click)="hideVetCard()">
 			    <button  ion-fab mini clear>
 			      <ion-icon name="close"></ion-icon>
 				</button>
@@ -41,7 +42,7 @@
 		    <h2 >{{vetSelected?.name}}</h2>
 		    <p>{{vetSelected?.address}}</p>
 		    <img src="assets/imgs/star.png" style="height:30px;width:100px;display:inline;" >
-			    <button ion-button clear  class="show_profile_btn" (click)="showVet()">
+			    <button ion-button clear (click)="showVet()">
 			      show Profile
 			    </button>
 		  	</ion-item>

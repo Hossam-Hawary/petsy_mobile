@@ -68,9 +68,9 @@ export class MapPage {
           .then(marker => {
             marker.on(GoogleMapsEvent.MARKER_CLICK)
               .subscribe(() => {
-              	this.vetSelected = vet;
-              	let markerWindow = this.mapHelper.createHtmlInfoWindowContent(vet)
-              	markerWindow.open(marker)                
+              	 this.vetSelected = vet;
+                 // this.map.animateCameraZoomOut()
+                 // this.map.animateCameraZoomIn()
               });
         });
 	}
@@ -87,6 +87,11 @@ export class MapPage {
       this.map.animateCamera(cameraPosition)
     })
     modal.present();
+  }
+
+  listVets(){
+    this.navCtrl.push('VetListPage', {vets:this.vets})
+
   }
 
   async createOrUpdateMylocation(){
